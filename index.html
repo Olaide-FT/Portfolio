@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="bg-slate-950 text-gray-400 sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto flex items-center justify-between p-5">
+            <!-- Logo -->
+            <div class="font-[raleway] text-2xl text-white">
+                <h1>OF</h1>
+            </div>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex">
+                <ul class="flex items-center gap-8">
+                    <li><a href="#hero" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
+                                class="fa-solid fa-house"></i><span>Home</span></a></li>
+                    <li><a href="#about" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
+                                class="fa-solid fa-user"></i><span>About</span></a></li>
+                    <li><a href="#skills" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
+                                class="fa-solid fa-file"></i><span>Skills</span></a></li>
+                    <li><a href="#portfolio" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
+                                class="fa-solid fa-image"></i><span>Portfolio</span></a></li>
+                    <li><a href="#contact" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
+                                class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+                </ul>
+            </nav>
+            <!-- Social Icons (Desktop) -->
+            <div class="hidden md:flex gap-4 text-lg">
+                <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <!-- Hamburger -->
+            <button id="menu-btn" class="md:hidden text-2xl text-white">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-t border-gray-800">
+            <ul class="flex flex-col gap-6 p-6 text-center">
+                <li><a href="#hero" class="block hover:text-[#f95e4d]">Home</a></li>
+                <li><a href="#about" class="block hover:text-[#f95e4d]">About</a></li>
+                <li><a href="#skills" class="block hover:text-[#f95e4d]">Skills</a></li>
+                <li><a href="#portfolio" class="block hover:text-[#f95e4d]">Portfolio</a></li>
+                <li><a href="#contact" class="block hover:text-[#f95e4d]">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="">
+        <section id="hero" class="min-h-screen flex items-center bg-slate-950 pl-5 pr-5 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+                <!-- Left Content -->
+                <div>
+                    <h1 class="text-6xl md:text-7xl text-white text-[raleway] mb-3">My<span
+                            class="text-[#f95e4d]">Portfolio</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-200 mb-3">Fareedah Olaide</h2>
+                    <p class="text-gray-400 mb-3 max-w-xl">I'm a <span class="font-semibold text-[#f95e4d]">Web
+                            Developer</span></p>
+                    <p class="text-gray-400 mb-8 max-w-xl">Passionate about creating exceptional digital experiences
+                        that blend innovative design with functional development. Let's bring your vision to life.</p>
+                    <!-- Buttons -->
+                    <div class="flex gap-4 mb-8">
+                        <a href="#portfolio"
+                            class="bg-[#f95e4d] text-white px-6 text-[14px] py-3 rounded-lg font-medium hover:opacity-90 transition">View
+                            My Work</a>
+                        <a href="#contact"
+                            class="border border-[#f95e4d] text-[#f95e4d] text-[14px] px-6 py-3 rounded-lg font-medium hover:bg-[#f95e4d] hover:text-white transition">Get
+                            In Touch</a>
+                    </div>
+                    <!-- Social Links -->
+                    <div class="flex gap-6 text-xl text-gray-600">
+                        <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <!-- Right Image -->
+                <div class="flex justify-center">
+                    <div class="relative">
+                        <img src="./pictures/sarah.webp" alt="Alexander Chen"
+                            class="relative w-80 h-80 object-cover rounded-full mb-6">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="bg-slate-950 text-gray-300 py-20 min-h-screen">
+            <div class="max-w-6xl grid md:grid-cols-2 gap-12 items-center">
+                <!-- Image -->
+                <div class="flex justify-center">
+                    <img src="./pictures/sarah.webp" alt="Profile" class="w-72 rounded-xl shadow-lg  border-slate-800">
+                </div>
+                <!-- Content -->
+                <div class="ml-5 mr-5">
+                    <h2 class="text-4xl font-bold text-white mb-4">About Me</h2>
+                    <p class="mb-4 text-gray-400 leading-relaxed">I'm <span
+                            class="text-[#f95e4d] font-semibold">Fareedah Olaide</span>, a
+                        passionate frontend developer focused on building responsive and
+                        user-friendly web experiences. I enjoy turning ideas into clean,
+                        functional, and visually appealing interfaces.
+                    </p>
+                    <p class="mb-6 text-gray-400 leading-relaxed">
+                        I specialize in HTML, CSS, and Tailwind CSS, and I'm currently expanding
+                        my skills in JavaScript to build more interactive web applications.
+                    </p>
+                    <!-- Skills -->
+                    <div class="mb-6">
+                        <h3 class="text-xl text-white font-semibold mb-3">Core Skills</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-slate-800 px-3 py-1 rounded-md">HTML</span>
+                            <span class="bg-slate-800 px-3 py-1 rounded-md">CSS</span>
+                            <span class="bg-slate-800 px-3 py-1 rounded-md">Tailwind</span>
+                            <span class="bg-slate-800 px-3 py-1 rounded-md">JavaScript</span>
+                            <span class="bg-slate-800 px-3 py-1 rounded-md">Git</span>
+                            <span class="bg-slate-800 px-3 py-1 rounded-md">Responsive Design</span>
+                        </div>
+                    </div>
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mb-8 text-center">
+                        <div>
+                            <h4 class="text-2xl font-bold text-[#f95e4d]">5+</h4>
+                            <p class="text-sm text-gray-400">Projects</p>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold text-[#f95e4d]">1+</h4>
+                            <p class="text-sm text-gray-400">Years Learning</p>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold text-[#f95e4d]">100%</h4>
+                            <p class="text-sm text-gray-400">Commitment</p>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="flex gap-4">
+                        <a href="#contact"
+                            class="bg-[#f95e4d] text-white px-6 py-2 rounded-lg hover:bg-[#e14c3c] transition">
+                            Contact Me
+                        </a>
+                        <a href="#"
+                            class="border border-gray-600 px-6 py-2 rounded-lg hover:border-[#f95e4d] hover:text-[#f95e4d] transition">
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 bg-slate-950 text-white pr-5 pl-5 min-h-screen">
+            <!-- Section Title -->
+            <div class="max-w-6xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Skills</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    A growing frontend developer focused on building responsive, accessible, and modern web interfaces
+                    while continuously learning new technologies.
+                </p>
+            </div>
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <p class="text-lg text-gray-300">
+                        Continuous learning and hands-on projects help me refine my development skills every day.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <div class="lg:col-span-2 space-y-12">
+                        <!-- Technical Skills -->
+                        <div class="">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-semibold">Technical Skills</h3>
+                                <p class="text-gray-300 text-sm">Core web development technologies</p>
+                            </div>
+                            <div class="space-y-6 ">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>HTML5</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:90%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>CSS3</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:85%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Tailwind CSS</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Frontend Development -->
+                        <div class="">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-semibold">Frontend Development</h3>
+                                <p class="text-gray-300 text-sm">Interface building and layout techniques</p>
+                            </div>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Responsive Design</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:85%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Flexbox & Grid</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:80%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>UI Implementation</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tools -->
+                        <div class="">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-semibold">Tools & Workflow</h3>
+                                <p class="text-gray-400 text-sm">Development tools and collaboration</p>
+                            </div>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Git & GitHub</span>
+                                        <span>75%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:75%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>Figma</span>
+                                        <span>70%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:70%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span>JavaScript (Learning)</span>
+                                        <span>60%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-500 h-2 rounded">
+                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:60%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="space-y-10 ">
+                        <div class="bg-slate-900 p-8 rounded-xl text-center">
+                            <div class="text-3xl text-[#f95e4d] mb-4">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-3">Learning Experience</h4>
+                            <div class="text-4xl font-bold text-[#f95e4d] mb-2">1+</div>
+                            <span class="text-gray-300 text-sm">Year</span>
+                            <p class="text-gray-300 mt-4 text-sm">
+                                Passionate about building modern websites and continuously improving my frontend
+                                development skills.
+                            </p>
+                        </div>
+                        <!-- Technologies -->
+                        <div>
+                            <h5 class="text-xl font-semibold mb-6">Primary Technologies</h5>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
+                                    <i class="fa-brands fa-html5 text-orange-500"></i>
+                                    <span>HTML5</span>
+                                </div>
+                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
+                                    <i class="fa-brands fa-css3-alt text-blue-500"></i>
+                                    <span>CSS3</span>
+                                </div>
+                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
+                                    <i class="fa-solid fa-wind text-teal-400"></i>
+                                    <span>Tailwind</span>
+                                </div>
+                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
+                                    <i class="fa-brands fa-js text-yellow-400"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
+                                    <i class="fa-brands fa-git-alt text-red-500"></i>
+                                    <span>Git</span>
+                                </div>
+                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
+                                    <i class="fa-brands fa-figma text-purple-400"></i>
+                                    <span>Figma</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Achievements -->
+                        <div>
+                            <h5 class="text-xl font-semibold mb-6">Recent Achievements</h5>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex gap-4">
+                                    <span class="text-[#f95e4d]">2026</span>
+                                    <span>Built personal developer portfolio</span>
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-[#f95e4d]">2026</span>
+                                    <span>Led collaborative GitHub project</span>
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-[#f95e4d]">2026</span>
+                                    <span>Began JavaScript development journey</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="bg-slate-950 text-gray-300 py-20 px-6 min-h-screen">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl font-bold text-white mb-10 text-center">My Projects</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">
+                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                            principles.
+                        </p>
+                        <div class="flex gap-2 mb-4 text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">
+                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                            principles.
+                        </p>
+                        <div class="flex gap-2 mb-4 text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">
+                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                            principles.
+                        </p>
+                        <div class="flex gap-2 mb-4 text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">
+                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                            principles.
+                        </p>
+                        <div class="flex gap-2 mb-4 text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2"> Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">
+                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                            principles.
+                        </p>
+                        <div class="flex gap-2 mb-4 text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">
+                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                            principles.
+                        </p>
+                        <div class="flex gap-2 mb-4 text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-slate-950 min-h-screen">
+            <div class="max-w-6xl mx-auto px-6 text-center mb-16 text-white">
+                <h2 class="text-4xl font-bold mb-4">Contact</h2>
+                <p class=" max-w-2xl mx-auto">I'm currently open to internship opportunities and collaborations.</p>
+            </div>
+            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
+                <div class="bg-slate-900 p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Contact Info</h3>
+                    <p class="text-gray-500 mb-8">I’m a frontend developer passionate about building responsive and
+                        user-friendly web experiences.
+                    </p>
+                    <div class="flex gap-4 mb-6">
+                        <div class="text-[#f95e4d] text-xl">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Location</h4>
+                            <p class="text-gray-500">Nigeria</p>
+                        </div>
+                    </div>
+                    <!-- Phone -->
+                    <div class="flex gap-4 mb-6">
+                        <div class="text-[#f95e4d] text-xl">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Phone Number</h4>
+                            <p class="text-gray-500">+2349159885788</p>
+                            <p class="text-gray-500">+2349077308892</p>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="flex gap-4">
+                        <div class="text-[#f95e4d] text-xl">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Email Address</h4>
+                            <p class="text-gray-500">olaidefaridat@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Form -->
+                <div class="bg-slate-900 p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Get In Touch</h3>
+                    <p class="text-gray-500 mb-8">I’m a frontend developer passionate about building responsive and
+                        user-friendly web experiences.</p>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" name="name" placeholder="Your Name" required
+                                class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800">
+                            <input type="email" name="email" placeholder="Your Email" required
+                                class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800">
+                        </div>
+                        <input type="text" name="subject" placeholder="Subject" required
+                            class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800">
+                        <textarea name="message" rows="6" placeholder="Message" required
+                            class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800"></textarea>
+                        <button type="submit"
+                            class="bg-[#f95e4d] text-white px-8 py-3 rounded-lg hover:opacity-90 transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-slate-950 text-gray-400 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-12 py-12 grid md:grid-cols-3 gap-10">
+            <!-- Brand -->
+            <div>
+                <h2 class="text-2xl text-white font-semibold mb-3">OF</h2>
+                <p class="text-gray-500 max-w-sm">Frontend developer passionate about building responsive,
+                    user-friendly, and modern web experiences.</p>
+            </div>
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#hero" class="hover:text-[#f95e4d] transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-[#f95e4d] transition">About</a></li>
+                    <li><a href="#skills" class="hover:text-[#f95e4d] transition">Skills</a></li>
+                    <li><a href="#portfolio" class="hover:text-[#f95e4d] transition">Portfolio</a></li>
+                    <li><a href="#contact" class="hover:text-[#f95e4d] transition">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Contact & Social -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Connect</h3>
+                <p class="mb-3">
+                    <a href="mailto:youremail@email.com" class="hover:text-[#f95e4d] transition">
+                        olaidefaridat@email.com
+                    </a>
+                </p>
+                <div class="flex gap-5 text-xl">
+                    <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom -->
+        <div class="border-t border-gray-800 bg-slate-900">
+            <div class="max-w-7xl mx-auto px-12 py-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2026 Fareedah Olaide. All rights reserved.</p>
+                <a href="#hero" class="text-sm hover:text-[#f95e4d] transition">Back to Top ↑</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
