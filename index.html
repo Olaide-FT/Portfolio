@@ -67,10 +67,10 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
                 <!-- Left Content -->
                 <div>
-                    <h1 class="text-6xl md:text-7xl text-white text-[raleway] mb-3">My<span
-                            class="text-[#f95e4d]">Portfolio</span></h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-200 mb-3">Fareedah Olaide</h2>
-                    <p class="text-gray-400 mb-3 max-w-xl">I'm a <span class="font-semibold text-[#f95e4d]">Web
+                    <h1 class="text-6xl md:text-7xl text-white mb-3">My<span class="text-[#f95e4d]">Portfolio</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-300 mb-3">Fareedah Olaide</h2>
+                    <p class="text-gray-500 mb-3 max-w-xl">I'm a <span class="font-semibold text-[#f95e4d]">Web
                             Developer</span></p>
                     <p class="text-gray-400 mb-8 max-w-xl">Passionate about creating exceptional digital experiences
                         that blend innovative design with functional development. Let's bring your vision to life.</p>
@@ -85,15 +85,15 @@
                     </div>
                     <!-- Social Links -->
                     <div class="flex gap-6 text-xl text-gray-600">
-                        <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://github.com/dashboard" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-github"></i></a>
                         <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
                 <!-- Right Image -->
                 <div class="flex justify-center">
-                    <div class="relative">
+                    <div class="">
                         <img src="./pictures/mypicture.jpeg" alt="Alexander Chen"
-                            class="relative w-80 h-80 object-cover rounded-full mb-">
+                            class=" w-80 h-80 object-cover rounded-full">
                     </div>
                 </div>
             </div>
@@ -103,13 +103,14 @@
             <div class="max-w-6xl grid md:grid-cols-2 gap-12 items-center">
                 <!-- Image -->
                 <div class="flex justify-center">
-                    <img src="./pictures/mypicture.jpeg" alt="" class="w-80 h-80 rounded-full object-cover border-slate-800">
+                    <img src="./pictures/mypicture.jpeg" alt=""
+                        class="w-80 h-80 rounded-full object-cover border-slate-800">
                 </div>
                 <!-- Content -->
                 <div class="ml-5 mr-5">
                     <h2 class="text-4xl font-bold text-white mb-4">About Me</h2>
-                    <p class="mb-4 text-gray-400 leading-relaxed">I'm <span
-                            class="text-[#f95e4d] font-semibold">Fareedah Olaide</span>, a
+                    <p class="mb-4 text-gray-400">I'm <span class="text-[#f95e4d] font-semibold">Fareedah Olaide</span>,
+                        a
                         passionate frontend developer focused on building responsive and
                         user-friendly web experiences. I enjoy turning ideas into clean,
                         functional, and visually appealing interfaces.
@@ -357,100 +358,143 @@
             <div class="max-w-6xl mx-auto">
                 <h2 class="text-4xl font-bold text-white mb-10 text-center">My Projects</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
-                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                        <p class="text-gray-400 mb-4">
-                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                            principles.
-                        </p>
-                        <div class="flex gap-2 mb-4 text-sm">
-                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
-                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                        <p class="text-gray-400 mb-4">
-                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                            principles.
-                        </p>
-                        <div class="flex gap-2 mb-4 text-sm">
-                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
+                        <!-- Project Image -->
+                        <img src="./pictures/traveltime2.png" alt="Portfolio Website" class="w-full h-48 object-cover">
+                        <!-- Card Content -->
+                        <div class="p-6 bg-slate-900">
+                            <h3 class="text-xl font-semibold text-white mb-2">Traveltime</h3>
+                            <p class="text-gray-400 mb-4">
+                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                                principles.
+                            </p>
+                            <!-- Tech Stack -->
+                            <div class="flex gap-2 mb-4 text-sm">
+                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">TailwindCSS</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">CSS</span>
+                            </div>
+                            <!-- Links -->
+                            <div class="flex gap-4">
+                                <a href="https://jan-cohort-project.vercel.app/" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                                <a href="https://github.com/Olaide-FT/Jan_Cohort_Project.git" class="text-gray-400 hover:text-white">GitHub </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
-                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                        <p class="text-gray-400 mb-4">
-                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                            principles.
-                        </p>
-                        <div class="flex gap-2 mb-4 text-sm">
-                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
-                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                        <p class="text-gray-400 mb-4">
-                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                            principles.
-                        </p>
-                        <div class="flex gap-2 mb-4 text-sm">
-                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
+                        <!-- Project Image -->
+                        <img src="./pictures/calculator.png" alt="Portfolio Website" class="w-full h-48 object-cover">
+                        <!-- Card Content -->
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Calculator</h3>
+                            <p class="text-gray-400 mb-4">
+                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                                principles.
+                            </p>
+                            <!-- Tech Stack -->
+                            <div class="flex gap-2 mb-4 text-sm">
+                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">TailwindCSS</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                            </div>
+                            <!-- Links -->
+                            <div class="flex gap-4">
+                                <a href="https://calculator-rho-hazel.vercel.app/" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                                <a href="https://github.com/Olaide-FT/Calculator.git" class="text-gray-400 hover:text-white">GitHub</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
-                        <h3 class="text-xl font-semibold text-white mb-2"> Portfolio Website</h3>
-                        <p class="text-gray-400 mb-4">
-                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                            principles.
-                        </p>
-                        <div class="flex gap-2 mb-4 text-sm">
-                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
+                        <!-- Project Image -->
+                        <img src="./pictures/portfolio.png" alt="Portfolio Website" class="w-full h-48 object-cover">
+                        <!-- Card Content -->
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                            <p class="text-gray-400 mb-4">
+                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                                principles.
+                            </p>
+                            <!-- Tech Stack -->
+                            <div class="flex gap-2 mb-4 text-sm">
+                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">TailwindCSS</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">CSS</span>
+                            </div>
+                            <!-- Links -->
+                            <div class="flex gap-4">
+                                <a href="https://portfolio-taupe-chi-46.vercel.app/" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                                <a href="https://github.com/Olaide-FT/Portfolio.git" class="text-gray-400 hover:text-white">GitHub</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-gray-800">
-                        <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                        <p class="text-gray-400 mb-4">
-                            Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                            principles.
-                        </p>
-                        <div class="flex gap-2 mb-4 text-sm">
-                            <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
+                        <!-- Project Image -->
+                        <img src="./pictures/project1.jpg" alt="Portfolio Website" class="w-full h-48 object-cover">
+                        <!-- Card Content -->
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                            <p class="text-gray-400 mb-4">
+                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                                principles.
+                            </p>
+                            <!-- Tech Stack -->
+                            <div class="flex gap-2 mb-4 text-sm">
+                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                            </div>
+                            <!-- Links -->
+                            <div class="flex gap-4">
+                                <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                                <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                            </div>
                         </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                            <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                    </div>
+                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
+                        <!-- Project Image -->
+                        <img src="./pictures/project1.jpg" alt="Portfolio Website" class="w-full h-48 object-cover">
+                        <!-- Card Content -->
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                            <p class="text-gray-400 mb-4">
+                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                                principles.
+                            </p>
+                            <!-- Tech Stack -->
+                            <div class="flex gap-2 mb-4 text-sm">
+                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                            </div>
+                            <!-- Links -->
+                            <div class="flex gap-4">
+                                <a href="#" class="text-[#f95e4d] hover:underline">Live Demo </a>
+                                <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
+                        <!-- Project Image -->
+                        <img src="./pictures/project1.jpg" alt="Portfolio Website" class="w-full h-48 object-cover">
+                        <!-- Card Content -->
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
+                            <p class="text-gray-400 mb-4">
+                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
+                                principles.
+                            </p>
+                            <!-- Tech Stack -->
+                            <div class="flex gap-2 mb-4 text-sm">
+                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                            </div>
+                            <!-- Links -->
+                            <div class="flex gap-4">
+                                <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
+                                <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -567,4 +611,5 @@
         </div>
     </footer>
 </body>
+
 </html>
