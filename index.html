@@ -1,352 +1,601 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fareedah Olaide | Frontend Developer</title>
+    <meta name="description"
+        content="Frontend Developer portfolio of Fareedah Olaide — building modern, responsive, human-centered web experiences with HTML, CSS, Tailwind CSS, JavaScript, React, Figma, Git, and GitHub." />
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        raleway: ["Raleway", "sans-serif"],
+                        poppins: ["Poppins", "sans-serif"],
+                    },
+                    colors: {
+                        accent: "#f95e4d",
+                    },
+                    boxShadow: {
+                        soft: "0 10px 30px rgba(0,0,0,0.08)",
+                        darksoft: "0 10px 30px rgba(0,0,0,0.25)",
+                    },
+                },
+            },
+        };
+    </script>
 </head>
 
-<body class="font-[raleway]">
-    <header class="bg-slate-950 text-gray-400 sticky top-0 z-50 border-b border-gray-800 ">
-        <div class="max-w-7xl mx-auto flex items-center justify-between p-5">
+<body class="font-raleway bg-white text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <!-- ================= BACK TO TOP FLOATING BUTTON ================= -->
+    <button id="backToTop"
+        class="fixed bottom-6 right-6 z-50 hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-soft transition hover:-translate-y-1 hover:text-accent dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:shadow-darksoft"
+        aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ================= HEADER ================= -->
+    <header
+        class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/85">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <!-- Logo -->
-            <div class=" text-2xl text-white">
-                <h1>OF</h1>
-            </div>
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex">
-                <ul class="flex items-center gap-8">
-                    <li><a href="#hero" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
-                                class="fa-solid fa-house"></i><span>Home</span></a></li>
-                    <li><a href="#about" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
-                                class="fa-solid fa-user"></i><span>About</span></a></li>
-                    <li><a href="#skills" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
-                                class="fa-solid fa-file"></i><span>Skills</span></a></li>
-                    <li><a href="#portfolio" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
-                                class="fa-solid fa-image"></i><span>Portfolio</span></a></li>
-                    <li><a href="#contact" class="flex items-center gap-2 hover:text-[#f95e4d] transition"><i
-                                class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+            <a href="#hero" class="group flex items-center gap-3">
+                <div
+                    class="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-300 bg-slate-900 text-lg font-bold text-white transition group-hover:border-accent dark:border-slate-700">
+                    OF
+                </div>
+                <div class="hidden sm:block">
+                    <p class="text-sm font-semibold tracking-wide text-slate-900 dark:text-white">Fareedah Olaide</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Frontend Developer</p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:block">
+                <ul class="flex items-center gap-8 text-sm font-medium">
+                    <li><a href="#hero"
+                            class="nav-link text-slate-600 transition hover:text-accent dark:text-slate-300">Home</a>
+                    </li>
+                    <li><a href="#stack"
+                            class="nav-link text-slate-600 transition hover:text-accent dark:text-slate-300">Tech
+                            Stack</a></li>
+                    <li><a href="#projects"
+                            class="nav-link text-slate-600 transition hover:text-accent dark:text-slate-300">Projects</a>
+                    </li>
+                    <li><a href="#timeline"
+                            class="nav-link text-slate-600 transition hover:text-accent dark:text-slate-300">Experience</a>
+                    </li>
+                    <li><a href="#contact"
+                            class="nav-link text-slate-600 transition hover:text-accent dark:text-slate-300">Contact</a>
+                    </li>
                 </ul>
             </nav>
-            <!-- Social Icons (Desktop) -->
-            <div class="hidden md:flex gap-4 text-lg">
-                <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-linkedin-in"></i></a>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" type="button"
+                    class="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:border-accent hover:text-accent dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                    aria-label="Toggle color theme">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+
+                <a href="#contact"
+                    class="hidden rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:opacity-90 lg:inline-flex">
+                    Let’s Talk
+                </a>
+
+                <button id="menuBtn" type="button"
+                    class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:text-accent dark:border-slate-700 dark:bg-slate-900 dark:text-white lg:hidden"
+                    aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
-            <!-- Hamburger -->
-            <button id="menu-btn" class="md:hidden text-2xl text-white">
-                <i class="fa-solid fa-bars"></i>
-            </button>
         </div>
+
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-t border-gray-800">
-            <ul class="flex flex-col gap-6 p-6 text-center">
-                <li><a href="#hero" class="block hover:text-[#f95e4d]">Home</a></li>
-                <li><a href="#about" class="block hover:text-[#f95e4d]">About</a></li>
-                <li><a href="#skills" class="block hover:text-[#f95e4d]">Skills</a></li>
-                <li><a href="#portfolio" class="block hover:text-[#f95e4d]">Portfolio</a></li>
-                <li><a href="#contact" class="block hover:text-[#f95e4d]">Contact</a></li>
-            </ul>
+        <div id="mobileMenu"
+            class="hidden border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 lg:hidden">
+            <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+                <ul class="flex flex-col gap-2">
+                    <li><a href="#hero"
+                            class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-accent dark:text-slate-200 dark:hover:bg-slate-900">Home</a>
+                    </li>
+                    <li><a href="#stack"
+                            class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-accent dark:text-slate-200 dark:hover:bg-slate-900">Tech
+                            Stack</a></li>
+                    <li><a href="#projects"
+                            class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-accent dark:text-slate-200 dark:hover:bg-slate-900">Projects</a>
+                    </li>
+                    <li><a href="#timeline"
+                            class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-accent dark:text-slate-200 dark:hover:bg-slate-900">Experience</a>
+                    </li>
+                    <li><a href="#contact"
+                            class="mobile-link block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-accent dark:text-slate-200 dark:hover:bg-slate-900">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
-    <main class="">
-        <section id="hero" class=" flex items-center bg-slate-950 pl-5 pr-5 py-2">
-            <div class="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
-                <!-- Left Content -->
-                <div>
-                    <h1 class="text-6xl md:text-7xl text-white mb-3">My<span class="text-[#f95e4d]">Portfolio</span>
+
+    <main id="main">
+        <!-- ================= HERO ================= -->
+        <section id="hero" class="relative overflow-hidden">
+            <div class="absolute inset-0 -z-10">
+                <div class="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl">
+                </div>
+                <div
+                    class="absolute bottom-10 right-10 h-56 w-56 rounded-full bg-sky-500/10 blur-3xl dark:bg-accent/10">
+                </div>
+            </div>
+
+            <div
+                class="mx-auto grid min-h-[calc(100vh-80px)] max-w-7xl items-center gap-14 px-4 py-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-24">
+                <!-- Left -->
+                <div class="reveal">
+                    <p
+                        class="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent">
+                        <span class="h-2 w-2 rounded-full bg-accent"></span>
+                        Open to frontend internship opportunities
+                    </p>
+
+                    <h1
+                        class="max-w-4xl text-4xl font-extrabold leading-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
+                        Hi, I’m <span class="text-accent">Fareedah Olaide</span>
                     </h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-300 mb-3">Fareedah Olaide</h2>
-                    <p class="text-gray-500 mb-3 max-w-xl">I'm a <span class="font-semibold text-[#f95e4d]">Web
-                            Developer</span></p>
-                    <p class="text-gray-400 mb-8 max-w-xl">Passionate about creating exceptional digital experiences
-                        that blend innovative design with functional development. Let's bring your vision to life.</p>
-                    <!-- Buttons -->
-                    <div class="flex gap-4 mb-8">
-                        <a href="#portfolio"
-                            class="bg-[#f95e4d] text-white px-6 text-[14px] py-3 rounded-lg font-medium hover:opacity-90 transition">View
-                            My Work</a>
-                        <a href="#contact"
-                            class="border border-[#f95e4d] text-[#f95e4d] text-[14px] px-6 py-3 rounded-lg font-medium hover:bg-[#f95e4d] hover:text-white transition">Get
-                            In Touch</a>
-                    </div>
-                    <!-- Social Links -->
-                    <div class="flex gap-6 text-xl text-gray-600">
-                        <a href="https://github.com/dashboard" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-github"></i></a>
-                        <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <!-- Right Image -->
-                <div class="flex justify-center">
-                    <div class="">
-                        <img src="./pictures/mypicture.jpeg" alt="Alexander Chen"
-                            class=" w-80 h-80 object-cover rounded-full">
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="about" class="bg-slate-950 text-gray-300 pt-20">
-            <div class="max-w-6xl grid md:grid-cols-2 gap-12 items-center">
-                <!-- Image -->
-                <div class="flex justify-center">
-                    <img src="./pictures/mypicture.jpeg" alt=""
-                        class="w-80 h-80 rounded-full object-cover border-slate-800">
-                </div>
-                <!-- Content -->
-                <div class="ml-5 mr-5">
-                    <h2 class="text-4xl font-bold text-white mb-4">About Me</h2>
-                    <p class="mb-4 text-gray-400">I'm <span class="text-[#f95e4d] font-semibold">Fareedah Olaide</span>,
-                        a
-                        passionate frontend developer focused on building responsive and
-                        user-friendly web experiences. I enjoy turning ideas into clean,
-                        functional, and visually appealing interfaces.
+                    <p class="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-400 sm:text-lg">
+                        I’m a junior frontend developer focused on responsive interfaces, thoughtful user experience,
+                        and clean implementation using Vanilla JavaScript, Tailwind CSS, and modern frontend
+                        fundamentals.
                     </p>
-                    <p class="mb-6 text-gray-400 leading-relaxed">
-                        I specialize in HTML, CSS, and Tailwind CSS, and I'm currently expanding
-                        my skills in JavaScript to build more interactive web applications.
-                    </p>
-                    <!-- Skills -->
-                    <div class="mb-6">
-                        <h3 class="text-xl text-white font-semibold mb-3">Core Skills</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-slate-800 px-3 py-1 rounded-md">HTML</span>
-                            <span class="bg-slate-800 px-3 py-1 rounded-md">CSS</span>
-                            <span class="bg-slate-800 px-3 py-1 rounded-md">Tailwind</span>
-                            <span class="bg-slate-800 px-3 py-1 rounded-md">JavaScript</span>
-                            <span class="bg-slate-800 px-3 py-1 rounded-md">Git</span>
-                            <span class="bg-slate-800 px-3 py-1 rounded-md">Responsive Design</span>
-                        </div>
-                    </div>
-                    <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-6 mb-8 text-center">
-                        <div>
-                            <h4 class="text-2xl font-bold text-[#f95e4d]">5+</h4>
-                            <p class="text-sm text-gray-400">Projects</p>
-                        </div>
-                        <div>
-                            <h4 class="text-2xl font-bold text-[#f95e4d]">1+</h4>
-                            <p class="text-sm text-gray-400">Years Learning</p>
-                        </div>
-                        <div>
-                            <h4 class="text-2xl font-bold text-[#f95e4d]">100%</h4>
-                            <p class="text-sm text-gray-400">Commitment</p>
-                        </div>
-                    </div>
-                    <!-- Buttons -->
-                    <div class="flex gap-4">
-                        <a href="#contact"
-                            class="bg-[#f95e4d] text-white px-6 py-2 rounded-lg hover:bg-[#e14c3c] transition">
-                            Contact Me
+
+                    <div class="mt-8 flex flex-wrap items-center gap-4">
+                        <a href="#projects"
+                            class="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-4 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                            View My Work
+                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="#"
-                            class="border border-gray-600 px-6 py-2 rounded-lg hover:border-[#f95e4d] hover:text-[#f95e4d] transition">
-                            Download CV
+
+                        <a href="#timeline"
+                            class="inline-flex items-center gap-2 rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-800 transition duration-300 hover:-translate-y-1 hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-100">
+                            My Journey
+                            <i class="fa-solid fa-briefcase"></i>
                         </a>
                     </div>
+
+                    <div class="mt-10 flex flex-wrap items-center gap-6 text-sm text-slate-600 dark:text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-accent"></i>
+                            <span>Nigeria</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-code text-accent"></i>
+                            <span>Vanilla JS • Tailwind CSS</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-laptop-code text-accent"></i>
+                            <span>Responsive UI Builder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="reveal lg:justify-self-end">
+                    <div
+                        class="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-soft dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950">
+                            <div class="mb-4 flex items-center justify-between">
+                                <div>
+                                    <h2 class="mt-2 text-xl font-bold text-slate-950 dark:text-white">Frontend Developer
+                                    </h2>
+                                </div>
+                                <div
+                                    class="hidden rounded-xl bg-accent/10 px-3 py-2 text-sm font-semibold text-accent sm:block">
+                                    2026-ready
+                                </div>
+                            </div>
+
+                            <div
+                                class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+                                <img src="./pictures/mypicture.jpeg" alt="Fareedah Olaide portrait"
+                                    class="h-80 w-full object-cover sm:h-[26rem]" />
+                            </div>
+
+                            <div class="mt-4 grid grid-cols-2 gap-4">
+                                <div
+                                    class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                                    <p class="text-2xl font-bold text-slate-950 dark:text-white">6+</p>
+                                    <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Live projects</p>
+                                </div>
+                                <div
+                                    class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                                    <p class="text-2xl font-bold text-slate-950 dark:text-white">1+</p>
+                                    <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Year building</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class=" bg-slate-950 text-white pr-5 pl-5 pt-20 ">
-            <!-- Section Title -->
-            <div class="max-w-6xl mx-auto text-center mb-4">
-                <h2 class="text-4xl font-bold mb-4">Skills</h2>
-                <p class="text-gray-300 max-w-2xl mx-auto">
-                    A growing frontend developer focused on building responsive, accessible, and modern web interfaces
-                    while continuously learning new technologies.
-                </p>
-            </div>
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <p class="text-lg text-gray-300">
-                        Continuous learning and hands-on projects help me refine my development skills every day.
+        <!-- ================= TECH STACK ================= -->
+        <section id="stack" class="border-t border-slate-200 py-20 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="reveal mx-auto max-w-3xl text-center">
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Tech Stack</p>
+                    <h2 class="mt-3 text-3xl font-bold text-slate-950 dark:text-white sm:text-4xl">
+                        Tools I use to design, build, and improve modern interfaces
+                    </h2>
+                    <p class="mt-4 text-base leading-7 text-slate-600 dark:text-slate-400">
+                        My workflow focuses on clean code, responsive layouts, usability, and continuous learning.
                     </p>
                 </div>
-                <div class="grid lg:grid-cols-3 gap-12">
-                    <div class="lg:col-span-2 space-y-12">
-                        <!-- Technical Skills -->
-                        <div class="">
-                            <div class="mb-6">
-                                <h3 class="text-2xl font-semibold">Technical Skills</h3>
-                                <p class="text-gray-300 text-sm">Core web development technologies</p>
+
+                <div class="mt-12 grid gap-4 grid-cols-2 lg:grid-cols-4">
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-500/10 text-2xl text-orange-500">
+                            <i class="fa-brands fa-html5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">HTML5</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Semantic markup and
+                            accessible page structure.</p>
+                    </div>
+
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-2xl text-blue-500">
+                            <i class="fa-brands fa-css3-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">CSS3</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Layout, spacing,
+                            responsiveness, and polished UI styling.</p>
+                    </div>
+
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-400/15 text-2xl text-yellow-400">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">JavaScript</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Interactive frontend
+                            behavior and modular UI logic.</p>
+                    </div>
+
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-2xl text-cyan-400">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">Tailwind CSS</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Utility-first styling for
+                            fast, maintainable interfaces.</p>
+                    </div>
+
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/10 text-2xl text-pink-500">
+                            <i class="fa-brands fa-figma"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">Figma</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Planning interfaces and
+                            translating design ideas into code.</p>
+                    </div>
+
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-2xl text-red-500">
+                            <i class="fa-brands fa-git-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">Git</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Version control for safer
+                            iteration and collaboration.</p>
+                    </div>
+
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-500/10 text-2xl text-slate-800 dark:text-slate-200">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">GitHub</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Project hosting,
+                            collaboration, and portfolio visibility.</p>
+                    </div>
+
+                    <div
+                        class="reveal rounded-3xl border border-slate-200 bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div
+                            class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500/10 text-2xl text-sky-500">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-950 dark:text-white">React</h3>
+                        <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Currently strengthening
+                            component-based frontend thinking.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  PROJECTS  -->
+        <section id="projects" class="border-t border-slate-200 py-20 dark:border-slate-800 ">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="reveal flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div class="max-w-2xl">
+                        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Project Gallery</p>
+                        <h2 class="mt-3 text-3xl font-bold text-slate-950 dark:text-white sm:text-4xl">
+                            Some of my favorite projects
+                        </h2>
+                    </div>
+
+                    
+                </div>
+
+                <div class="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                    <!-- Project 1 -->
+                    <article
+                        class="reveal group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-2 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div class="overflow-hidden">
+                            <img src="./pictures/E-commerce.png" alt="E-commerce project preview"
+                                class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+                        </div>
+
+                        <div class="flex flex-1 flex-col p-6">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-xl font-bold text-slate-950 dark:text-white">E-commerce</h3>
+                                <span
+                                    class="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">Live</span>
                             </div>
-                            <div class="space-y-6 ">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>HTML5</span>
-                                        <span>90%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:90%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>CSS3</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:85%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Tailwind CSS</span>
-                                        <span>80%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:80%"></div>
-                                    </div>
-                                </div>
+
+                            <p class="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                A responsive landing page project focused on layout structure, visual presentation, and
+                                clean product-style sections. It demonstrates my ability to convert design ideas into
+                                polished interfaces.
+                            </p>
+
+                            <div class="mt-5 flex flex-wrap gap-2">
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">HTML</span>
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">Tailwind
+                                    CSS</span>
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">CSS</span>
+                            </div>
+
+                            <div class="mt-6 flex gap-3">
+                                <a href="https://jan-cohort-project.vercel.app/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
+                                    <i class="fa-solid fa-up-right-from-square"></i>
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/Olaide-FT/Jan_Cohort_Project.git" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-100">
+                                    <i class="fa-brands fa-github"></i>
+                                    GitHub
+                                </a>
                             </div>
                         </div>
-                        <!-- Frontend Development -->
-                        <div class="">
-                            <div class="mb-6">
-                                <h3 class="text-2xl font-semibold">Frontend Development</h3>
-                                <p class="text-gray-300 text-sm">Interface building and layout techniques</p>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article
+                        class="reveal group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-2 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div class="overflow-hidden">
+                            <img src="./pictures/Music Player.png" alt="Music Player project preview"
+                                class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+                        </div>
+
+                        <div class="flex flex-1 flex-col p-6">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-xl font-bold text-slate-950 dark:text-white">Music Player</h3>
+                                <span
+                                    class="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">Interactive</span>
                             </div>
-                            <div class="space-y-6">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Responsive Design</span>
-                                        <span>85%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:85%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Flexbox & Grid</span>
-                                        <span>80%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:80%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>UI Implementation</span>
-                                        <span>80%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:80%"></div>
-                                    </div>
-                                </div>
+
+                            <p class="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                A responsive music player built with HTML, CSS, and JavaScript. It features a clean
+                                design, intuitive controls, and seamless playback functionality.
+                            </p>
+
+                            <div class="mt-5 flex flex-wrap gap-2">
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">HTML</span>
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">Tailwind
+                                    CSS</span>
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">JavaScript</span>
+                            </div>
+
+                            <div class="mt-6 flex gap-3">
+                                <a href="https://calculator-rho-hazel.vercel.app/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
+                                    <i class="fa-solid fa-up-right-from-square"></i>
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/Olaide-FT/Calculator.git" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-100">
+                                    <i class="fa-brands fa-github"></i>
+                                    GitHub
+                                </a>
                             </div>
                         </div>
-                        <!-- Tools -->
-                        <div class="">
-                            <div class="mb-6">
-                                <h3 class="text-2xl font-semibold">Tools & Workflow</h3>
-                                <p class="text-gray-400 text-sm">Development tools and collaboration</p>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article
+                        class="reveal group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-2 dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                        <div class="overflow-hidden">
+                            <img src="./pictures/Recipe Sharing.png" alt="Recipe Sharing project preview"
+                                class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+                        </div>
+
+                        <div class="flex flex-1 flex-col p-6">
+                            <div class="flex items-start justify-between gap-4">
+                                <h3 class="text-xl font-bold text-slate-950 dark:text-white">Recipe Sharing</h3>
+                                <span
+                                    class="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">Personal
+                                    Brand</span>
                             </div>
-                            <div class="space-y-6">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Git & GitHub</span>
-                                        <span>75%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:75%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Figma</span>
-                                        <span>70%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:70%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>JavaScript (Learning)</span>
-                                        <span>60%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-500 h-2 rounded">
-                                        <div class="bg-[#f95e4d] h-2 rounded" style="width:60%"></div>
-                                    </div>
-                                </div>
+
+                            <p class="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                A responsive recipe sharing website built with HTML, Tailwind CSS, and JavaScript. It
+                                features a clean design, intuitive navigation, and a user-friendly interface for
+                                sharing recipes.
+                            </p>
+
+                            <div class="mt-5 flex flex-wrap gap-2">
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">HTML</span>
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">Tailwind
+                                    CSS</span>
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">JavaScript</span>
+                                <span
+                                    class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">CSS</span>
                             </div>
+
+                            <div class="mt-6 flex gap-3">
+                                <a href="https://portfolio-taupe-chi-46.vercel.app/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
+                                    <i class="fa-solid fa-up-right-from-square"></i>
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/Olaide-FT/Portfolio.git" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-100">
+                                    <i class="fa-brands fa-github"></i>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!--  TIMELINE / ABOUT  -->
+        <section id="timeline" class="border-t border-slate-200 py-20 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+                    <!-- About -->
+                    <div class="reveal">
+                        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Experience / About</p>
+                        <h2 class="mt-3 text-3xl font-bold text-slate-950 dark:text-white sm:text-4xl">
+                            My path into frontend development
+                        </h2>
+                        <p class="mt-5 text-base leading-8 text-slate-600 dark:text-slate-400">
+                            I started by learning how structure, styling, and interaction come together on the web. As I
+                            kept building, I became more interested in creating interfaces that not only look good, but
+                            also feel intuitive and useful to real people.
+                        </p>
+                        <p class="mt-5 text-base leading-8 text-slate-600 dark:text-slate-400">
+                            Today, I enjoy turning ideas into responsive websites, improving UI details, and using every
+                            project as a chance to sharpen my frontend thinking. My current goal is to contribute as a
+                            junior frontend developer while continuing to grow through practical product work.
+                        </p>
+
+                        <div
+                            class="mt-8 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900">
+                            <h3 class="text-lg font-bold text-slate-950 dark:text-white">What I bring</h3>
+                            <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                <li class="flex gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span>Strong
+                                        interest in clean and maintainable frontend implementation</span></li>
+                                <li class="flex gap-3"><i
+                                        class="fa-solid fa-check text-accent mt-1"></i><span>Responsive design mindset
+                                        across mobile, tablet, and desktop</span></li>
+                                <li class="flex gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span>Growing
+                                        JavaScript confidence through real projects and UI practice</span></li>
+                                <li class="flex gap-3"><i
+                                        class="fa-solid fa-check text-accent mt-1"></i><span>Consistency, curiosity, and
+                                        willingness to learn quickly in teams</span></li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- Sidebar -->
-                    <div class="space-y-10 ">
-                        <div class="bg-slate-900 p-8 rounded-xl text-center">
-                            <div class="text-3xl text-[#f95e4d] mb-4">
-                                <i class="fa-solid fa-trophy"></i>
+
+                    <!-- Timeline -->
+                    <div class="reveal">
+                        <div class="relative space-y-6 border-l border-slate-300 pl-6 dark:border-slate-700">
+                            <div
+                                class="relative rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                                <span
+                                    class="absolute -left-[34px] top-7 h-4 w-4 rounded-full border-4 border-white bg-accent dark:border-slate-950"></span>
+                                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">2026</p>
+                                <h3 class="mt-2 text-lg font-bold text-slate-950 dark:text-white">Refining my portfolio
+                                    and frontend identity</h3>
+                                <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                    Reworking my portfolio to better present my work, communicate value clearly to
+                                    recruiters, and demonstrate stronger UI and interaction decisions.
+                                </p>
                             </div>
-                            <h4 class="text-xl font-semibold mb-3">Learning Experience</h4>
-                            <div class="text-4xl font-bold text-[#f95e4d] mb-2">1+</div>
-                            <span class="text-gray-300 text-sm">Year</span>
-                            <p class="text-gray-300 mt-4 text-sm">
-                                Passionate about building modern websites and continuously improving my frontend
-                                development skills.
-                            </p>
-                        </div>
-                        <!-- Technologies -->
-                        <div>
-                            <h5 class="text-xl font-semibold mb-6">Primary Technologies</h5>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
-                                    <i class="fa-brands fa-html5 text-orange-500"></i>
-                                    <span>HTML5</span>
-                                </div>
-                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
-                                    <i class="fa-brands fa-css3-alt text-blue-500"></i>
-                                    <span>CSS3</span>
-                                </div>
-                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
-                                    <i class="fa-solid fa-wind text-teal-400"></i>
-                                    <span>Tailwind</span>
-                                </div>
-                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
-                                    <i class="fa-brands fa-js text-yellow-400"></i>
-                                    <span>JavaScript</span>
-                                </div>
-                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
-                                    <i class="fa-brands fa-git-alt text-red-500"></i>
-                                    <span>Git</span>
-                                </div>
-                                <div class="bg-slate-900 p-4 rounded flex items-center gap-3">
-                                    <i class="fa-brands fa-figma text-purple-400"></i>
-                                    <span>Figma</span>
-                                </div>
+
+                            <div
+                                class="relative rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                                <span
+                                    class="absolute -left-[34px] top-7 h-4 w-4 rounded-full border-4 border-white bg-accent dark:border-slate-950"></span>
+                                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">2026</p>
+                                <h3 class="mt-2 text-lg font-bold text-slate-950 dark:text-white">Built interactive
+                                    JavaScript projects</h3>
+                                <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                    Strengthened DOM manipulation, logic, and event handling through hands-on projects
+                                    like a calculator and other UI-focused builds.
+                                </p>
                             </div>
-                        </div>
-                        <!-- Achievements -->
-                        <div>
-                            <h5 class="text-xl font-semibold mb-6">Recent Achievements</h5>
-                            <div class="space-y-4 text-sm">
-                                <div class="flex gap-4">
-                                    <span class="text-[#f95e4d]">2026</span>
-                                    <span>Built personal developer portfolio</span>
-                                </div>
-                                <div class="flex gap-4">
-                                    <span class="text-[#f95e4d]">2026</span>
-                                    <span>Led collaborative GitHub project</span>
-                                </div>
-                                <div class="flex gap-4">
-                                    <span class="text-[#f95e4d]">2026</span>
-                                    <span>Began JavaScript development journey</span>
-                                </div>
+
+                            <div
+                                class="relative rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                                <span
+                                    class="absolute -left-[34px] top-7 h-4 w-4 rounded-full border-4 border-white bg-accent dark:border-slate-950"></span>
+                                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">2026</p>
+                                <h3 class="mt-2 text-lg font-bold text-slate-950 dark:text-white">Collaborative GitHub
+                                    experience</h3>
+                                <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                    Participated in a team project workflow, contributed to shared code, and gained
+                                    practical experience with GitHub collaboration and version control.
+                                </p>
+                            </div>
+
+                            <div
+                                class="relative rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft">
+                                <span
+                                    class="absolute -left-[34px] top-7 h-4 w-4 rounded-full border-4 border-white bg-accent dark:border-slate-950"></span>
+                                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Foundation</p>
+                                <h3 class="mt-2 text-lg font-bold text-slate-950 dark:text-white">Started with HTML,
+                                    CSS, and design curiosity</h3>
+                                <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-400">
+                                    Began by learning structure and styling, then gradually moved into responsive
+                                    layouts, user-focused sections, and modern frontend development patterns.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -354,262 +603,146 @@
             </div>
         </section>
 
-        <section id="portfolio" class="bg-slate-950 text-gray-300 pt-20 px-6 ">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-4xl font-bold text-white mb-10 text-center">My Projects</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
-                        <!-- Project Image -->
-                        <img src="./pictures/traveltime2.png" alt="Portfolio Website" class="w-full h-48 object-cover">
-                        <!-- Card Content -->
-                        <div class="p-6 bg-slate-900">
-                            <h3 class="text-xl font-semibold text-white mb-2">Traveltime</h3>
-                            <p class="text-gray-400 mb-4">
-                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                                principles.
-                            </p>
-                            <!-- Tech Stack -->
-                            <div class="flex gap-2 mb-4 text-sm">
-                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">TailwindCSS</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">CSS</span>
-                            </div>
-                            <!-- Links -->
-                            <div class="flex gap-4">
-                                <a href="https://jan-cohort-project.vercel.app/" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                                <a href="https://github.com/Olaide-FT/Jan_Cohort_Project.git" class="text-gray-400 hover:text-white">GitHub </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
-                        <!-- Project Image -->
-                        <img src="./pictures/calculator.png" alt="Portfolio Website" class="w-full h-48 object-cover">
-                        <!-- Card Content -->
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Calculator</h3>
-                            <p class="text-gray-400 mb-4">
-                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                                principles.
-                            </p>
-                            <!-- Tech Stack -->
-                            <div class="flex gap-2 mb-4 text-sm">
-                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">TailwindCSS</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                            </div>
-                            <!-- Links -->
-                            <div class="flex gap-4">
-                                <a href="https://calculator-rho-hazel.vercel.app/" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                                <a href="https://github.com/Olaide-FT/Calculator.git" class="text-gray-400 hover:text-white">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
-                        <!-- Project Image -->
-                        <img src="./pictures/portfolio.png" alt="Portfolio Website" class="w-full h-48 object-cover">
-                        <!-- Card Content -->
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                            <p class="text-gray-400 mb-4">
-                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                                principles.
-                            </p>
-                            <!-- Tech Stack -->
-                            <div class="flex gap-2 mb-4 text-sm">
-                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">TailwindCSS</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">CSS</span>
-                            </div>
-                            <!-- Links -->
-                            <div class="flex gap-4">
-                                <a href="https://portfolio-taupe-chi-46.vercel.app/" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                                <a href="https://github.com/Olaide-FT/Portfolio.git" class="text-gray-400 hover:text-white">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
-                        <!-- Project Image -->
-                        <img src="./pictures/project1.jpg" alt="Portfolio Website" class="w-full h-48 object-cover">
-                        <!-- Card Content -->
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                            <p class="text-gray-400 mb-4">
-                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                                principles.
-                            </p>
-                            <!-- Tech Stack -->
-                            <div class="flex gap-2 mb-4 text-sm">
-                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                            </div>
-                            <!-- Links -->
-                            <div class="flex gap-4">
-                                <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                                <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
-                        <!-- Project Image -->
-                        <img src="./pictures/project1.jpg" alt="Portfolio Website" class="w-full h-48 object-cover">
-                        <!-- Card Content -->
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                            <p class="text-gray-400 mb-4">
-                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                                principles.
-                            </p>
-                            <!-- Tech Stack -->
-                            <div class="flex gap-2 mb-4 text-sm">
-                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                            </div>
-                            <!-- Links -->
-                            <div class="flex gap-4">
-                                <a href="#" class="text-[#f95e4d] hover:underline">Live Demo </a>
-                                <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-900 rounded-xl border border-gray-800 overflow-hidden">
-                        <!-- Project Image -->
-                        <img src="./pictures/project1.jpg" alt="Portfolio Website" class="w-full h-48 object-cover">
-                        <!-- Card Content -->
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Website</h3>
-                            <p class="text-gray-400 mb-4">
-                                Personal developer portfolio built with HTML, Tailwind CSS, and responsive design
-                                principles.
-                            </p>
-                            <!-- Tech Stack -->
-                            <div class="flex gap-2 mb-4 text-sm">
-                                <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">Tailwind</span>
-                                <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
-                            </div>
-                            <!-- Links -->
-                            <div class="flex gap-4">
-                                <a href="#" class="text-[#f95e4d] hover:underline">Live Demo</a>
-                                <a href="#" class="text-gray-400 hover:text-white">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!--  CONTACT  -->
+        <section id="contact" class="border-t border-slate-200 py-20 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+                    <!-- Left -->
+                    <div class="reveal">
+                        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Contact</p>
+                        <h2 class="mt-3 text-3xl font-bold text-slate-950 dark:text-white sm:text-4xl">
+                            Let’s build something useful together
+                        </h2>
+                        <p class="mt-5 max-w-xl text-base leading-8 text-slate-600 dark:text-slate-400">
+                            I’m currently open to internship roles, junior frontend opportunities, and collaborations
+                            where I can contribute, learn fast, and keep improving through real product work.
+                        </p>
 
-        <section id="contact" class="py-20 bg-slate-950 ">
-            <div class="max-w-6xl mx-auto px-6 text-center mb-16 text-white">
-                <h2 class="text-4xl font-bold mb-4">Contact</h2>
-                <p class=" max-w-2xl mx-auto">I'm currently open to internship opportunities and collaborations.</p>
-            </div>
-            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
-                <div class="bg-slate-900 p-8 rounded-xl shadow-md">
-                    <h3 class="text-2xl font-semibold mb-4 text-white">Contact Info</h3>
-                    <p class="text-gray-500 mb-8">I’m a frontend developer passionate about building responsive and
-                        user-friendly web experiences.
-                    </p>
-                    <div class="flex gap-4 mb-6">
-                        <div class="text-[#f95e4d] text-xl">
-                            <i class="fa-solid fa-location-dot"></i>
+                        <div class="mt-8 space-y-4">
+                            <div
+                                class="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                                <div class="mt-1 text-accent"><i class="fa-solid fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-sm font-semibold text-slate-950 dark:text-white">Email</p>
+                                    <a href="mailto:olaidefaridat@gmail.com"
+                                        class="text-sm text-slate-600 transition hover:text-accent dark:text-slate-400">olaidefaridat@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                                <div class="mt-1 text-accent"><i class="fa-solid fa-phone"></i></div>
+                                <div>
+                                    <p class="text-sm font-semibold text-slate-950 dark:text-white">Phone</p>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">+234 915 988 5788 / +234 907
+                                        730 8892</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                                <div class="mt-1 text-accent"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    <p class="text-sm font-semibold text-slate-950 dark:text-white">Location</p>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Nigeria</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-white">Location</h4>
-                            <p class="text-gray-500">Nigeria</p>
+
+                        <div class="mt-8 flex items-center gap-4">
+                            <a href="https://github.com/Olaide-FT" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 text-slate-800 transition hover:-translate-y-0.5 hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-100"
+                                aria-label="GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="#"
+                                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 text-slate-800 transition hover:-translate-y-0.5 hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-100"
+                                aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
                         </div>
                     </div>
-                    <!-- Phone -->
-                    <div class="flex gap-4 mb-6">
-                        <div class="text-[#f95e4d] text-xl">
-                            <i class="fa-solid fa-phone"></i>
+
+                    <!-- Form -->
+                    <div
+                        class="reveal rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft sm:p-8">
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-bold text-slate-950 dark:text-white">Send a message</h3>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                                This form is set up to look functional and validate inputs on the frontend.
+                            </p>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-white">Phone Number</h4>
-                            <p class="text-gray-500">+2349159885788</p>
-                            <p class="text-gray-500">+2349077308892</p>
-                        </div>
+
+                        <form id="contactForm" class="space-y-5" novalidate>
+                            <div class="grid gap-5 sm:grid-cols-2">
+                                <div>
+                                    <label for="name"
+                                        class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
+                                    <input id="name" name="name" type="text" placeholder="Your name"
+                                        class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+                                    <p class="mt-2 hidden text-xs text-red-500" data-error-for="name"></p>
+                                </div>
+
+                                <div>
+                                    <label for="email"
+                                        class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+                                    <input id="email" name="email" type="email" placeholder="your@email.com"
+                                        class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+                                    <p class="mt-2 hidden text-xs text-red-500" data-error-for="email"></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subject"
+                                    class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Subject</label>
+                                <input id="subject" name="subject" type="text"
+                                    placeholder="What would you like to discuss?"
+                                    class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
+                                <p class="mt-2 hidden text-xs text-red-500" data-error-for="subject"></p>
+                            </div>
+
+                            <div>
+                                <label for="message"
+                                    class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
+                                <textarea id="message" name="message" rows="6"
+                                    placeholder="Tell me a bit about your project or opportunity..."
+                                    class="w-full resize-none rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white"></textarea>
+                                <p class="mt-2 hidden text-xs text-red-500" data-error-for="message"></p>
+                            </div>
+
+                            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                <button type="submit"
+                                    class="inline-flex items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-4 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:opacity-90">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    Send Message
+                                </button>
+
+                                <p id="formStatus" class="text-sm text-slate-500 dark:text-slate-400"></p>
+                            </div>
+                        </form>
                     </div>
-                    <!-- Email -->
-                    <div class="flex gap-4">
-                        <div class="text-[#f95e4d] text-xl">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-white">Email Address</h4>
-                            <p class="text-gray-500">olaidefaridat@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Contact Form -->
-                <div class="bg-slate-900 p-8 rounded-xl shadow-md">
-                    <h3 class="text-2xl font-semibold mb-4 text-white">Get In Touch</h3>
-                    <p class="text-gray-500 mb-8">I’m a frontend developer passionate about building responsive and
-                        user-friendly web experiences.</p>
-                    <form class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <input type="text" name="name" placeholder="Your Name" required
-                                class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800">
-                            <input type="email" name="email" placeholder="Your Email" required
-                                class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800">
-                        </div>
-                        <input type="text" name="subject" placeholder="Subject" required
-                            class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800">
-                        <textarea name="message" rows="6" placeholder="Message" required
-                            class="w-full border border-slate-800 rounded-lg px-4 py-3 focus:outline-none focus:border-slate-800 bg-slate-800"></textarea>
-                        <button type="submit"
-                            class="bg-[#f95e4d] text-white px-8 py-3 rounded-lg hover:opacity-90 transition">
-                            Send Message
-                        </button>
-                    </form>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="bg-slate-950 text-gray-400 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-12 py-12 grid md:grid-cols-3 gap-10">
-            <!-- Brand -->
-            <div>
-                <h2 class="text-2xl text-white font-semibold mb-3">OF</h2>
-                <p class="text-gray-500 max-w-sm">Frontend developer passionate about building responsive,
-                    user-friendly, and modern web experiences.</p>
-            </div>
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-white font-semibold mb-4">Quick Links</h3>
-                <ul class="space-y-2">
-                    <li><a href="#hero" class="hover:text-[#f95e4d] transition">Home</a></li>
-                    <li><a href="#about" class="hover:text-[#f95e4d] transition">About</a></li>
-                    <li><a href="#skills" class="hover:text-[#f95e4d] transition">Skills</a></li>
-                    <li><a href="#portfolio" class="hover:text-[#f95e4d] transition">Portfolio</a></li>
-                    <li><a href="#contact" class="hover:text-[#f95e4d] transition">Contact</a></li>
-                </ul>
-            </div>
-            <!-- Contact & Social -->
-            <div>
-                <h3 class="text-white font-semibold mb-4">Connect</h3>
-                <p class="mb-3">
-                    <a href="mailto:youremail@email.com" class="hover:text-[#f95e4d] transition">
-                        olaidefaridat@email.com
-                    </a>
-                </p>
-                <div class="flex gap-5 text-xl">
-                    <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" class="hover:text-[#f95e4d] transition"><i class="fa-brands fa-x-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        <!-- Bottom -->
-        <div class="border-t border-gray-800 bg-slate-900">
-            <div class="max-w-7xl mx-auto px-12 py-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm">© 2026 Fareedah Olaide. All rights reserved.</p>
-                <a href="#hero" class="text-sm hover:text-[#f95e4d] transition">Back to Top ↑</a>
+
+    <!--  FOOTER -->
+    <footer class="border-t border-slate-200 py-8 dark:border-slate-800">
+        <div
+            class="mx-auto flex max-w-7xl flex-col gap-4 px-4 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8 dark:text-slate-400">
+            <p>© 2026 Fareedah Olaide. Built with Tailwind CSS and Vanilla JavaScript.</p>
+            <div class="flex items-center gap-5">
+                <a href="#hero" class="transition hover:text-accent">Back to top</a>
+                <a href="https://github.com/Olaide-FT" target="_blank" rel="noopener noreferrer"
+                    class="transition hover:text-accent">GitHub</a>
+                <a href="#" class="transition hover:text-accent">LinkedIn</a>
             </div>
         </div>
     </footer>
+
+    
+    <script src=""></script>
+    
 </body>
 
 </html>
