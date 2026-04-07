@@ -1,10 +1,14 @@
+// document.addEventListener("DOMContentLoaded", () => {
+
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 const mobileLinks = document.querySelectorAll(".mobile-link");
 
-menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-});
+if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+}
 
 mobileLinks.forEach((link) => {
     link.addEventListener("click", () => {
@@ -12,39 +16,43 @@ mobileLinks.forEach((link) => {
     });
 });
 
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+const root = document.documentElement;
 
-let themeToggle = document.getElementById("themeToggle");
-let themeIcon = document.getElementById("themeIcon");
-let root = document.documentElement;
-
-let savedTheme = localStorage.getItem("portfolio-theme");
+const savedTheme = localStorage.getItem("portfolio-theme");
 
 if (savedTheme === "dark") {
     root.classList.add("dark");
-    themeIcon.className = "fa-solid fa-sun";
+    if (themeIcon) themeIcon.className = "fa-solid fa-sun";
 } else {
     root.classList.remove("dark");
-    themeIcon.className = "fa-solid fa-moon";
+    if (themeIcon) themeIcon.className = "fa-solid fa-moon";
 }
 
-themeToggle.addEventListener("click", () => {
-    root.classList.toggle("dark");
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        root.classList.toggle("dark");
 
-    let isDark = root.classList.contains("dark");
-    localStorage.setItem("portfolio-theme", isDark ? "light" : "dark");
-    themeIcon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
-});
+        const isDark = root.classList.contains("dark");
+        localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
+
+        if (themeIcon) {
+            themeIcon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        }
+    });
+}
 
 
-let sections = document.querySelectorAll("#main");
-let navLinks = document.querySelectorAll(".nav-link");
+ const sections = document.querySelectorAll("#main");
+const navLinks = document.querySelectorAll(".nav-link");
 
 function updateActiveNav() {
-    let currentId = "";
+    const currentId = "";
 
     sections.forEach((section) => {
-        let sectionTop = section.offsetTop - 120;
-        let sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
             currentId = section.getAttribute("id");
@@ -64,7 +72,7 @@ window.addEventListener("scroll", updateActiveNav);
 updateActiveNav();
 
 
-let revealItems = document.querySelectorAll(".reveal");
+const revealItems = document.querySelectorAll(".reveal");
 
 revealItems.forEach((item) => {
     item.classList.add(
@@ -93,7 +101,7 @@ const revealObserver = new IntersectionObserver(
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
-let backToTop = document.getElementById("backToTop");
+const backToTop = document.getElementById("backToTop");
 
 window.addEventListener("scroll", () => {
     if (window.scrollY > 500) {
@@ -110,18 +118,18 @@ backToTop.addEventListener("click", () => {
 });
 
 
-let contactForm = document.getElementById("contactForm");
-let formStatus = document.getElementById("formStatus");
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
 
 function showError(fieldName, message) {
-    let errorEl = document.querySelector(`[data-error-for="${fieldName}"]`);
+    const errorEl = document.querySelector(`[data-error-for="${fieldName}"]`);
     if (!errorEl) return;
     errorEl.textContent = message;
     errorEl.classList.remove("hidden");
 }
 
 function clearError(fieldName) {
-    let errorEl = document.querySelector(`[data-error-for="${fieldName}"]`);
+    const errorEl = document.querySelector(`[data-error-for="${fieldName}"]`);
     if (!errorEl) return;
     errorEl.textContent = "";
     errorEl.classList.add("hidden");
