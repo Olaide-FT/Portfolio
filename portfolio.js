@@ -44,7 +44,7 @@ if (themeToggle) {
 }
 
 
- const sections = document.querySelectorAll("#main");
+const sections = document.querySelectorAll("#main");
 const navLinks = document.querySelectorAll(".nav-link");
 
 function updateActiveNav() {
@@ -101,35 +101,26 @@ const revealObserver = new IntersectionObserver(
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
-const backToTop = document.getElementById("backToTop");
 
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 500) {
-        backToTop.classList.remove("hidden");
-        backToTop.classList.add("flex");
-    } else {
-        backToTop.classList.add("hidden");
-        backToTop.classList.remove("flex");
-    }
-});
 
-backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
+
 
 
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
+const submitBtn = document.getElementById("submitBtn");
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjowgja";
 
 function showError(fieldName, message) {
-    const errorEl = document.querySelector(`[data-error-for="${fieldName}"]`);
+    const errorEl = document.getElementById(`${fieldName}Error`);
     if (!errorEl) return;
     errorEl.textContent = message;
     errorEl.classList.remove("hidden");
 }
 
 function clearError(fieldName) {
-    const errorEl = document.querySelector(`[data-error-for="${fieldName}"]`);
+    const errorEl = document.getElementById(`${fieldName}Error`);
     if (!errorEl) return;
     errorEl.textContent = "";
     errorEl.classList.add("hidden");
@@ -139,54 +130,88 @@ function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+if (contactForm && formStatus && submitBtn) {
+    contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const name = formData.get("name").trim();
-    const email = formData.get("email").trim();
-    const subject = formData.get("subject").trim();
-    const message = formData.get("message").trim();
+        const formData = new FormData(contactForm);
+        const name = (formData.get("name") || "").trim();
+        const email = (formData.get("email") || "").trim();
+        const subject = (formData.get("subject") || "").trim();
+        const message = (formData.get("message") || "").trim();
 
-    let isValid = true;
-    formStatus.textContent = "";
+        let isValid = true;
 
-    ["name", "email", "subject", "message"].forEach(clearError);
+        formStatus.textContent = "";
+        formStatus.className = "text-sm text-slate-500 dark:text-slate-400";
 
-    if (!name) {
-        showError("name", "Please enter your name.");
-        isValid = false;
-    }
+        ["name", "email", "subject", "message"].forEach(clearError);
 
-    if (!email) {
-        showError("email", "Please enter your email.");
-        isValid = false;
-    } else if (!validateEmail(email)) {
-        showError("email", "Please enter a valid email address.");
-        isValid = false;
-    }
+        if (!name) {
+            showError("name", "Please enter your name.");
+            isValid = false;
+        }
 
-    if (!subject) {
-        showError("subject", "Please add a subject.");
-        isValid = false;
-    }
+        if (!email) {
+            showError("email", "Please enter your email.");
+            isValid = false;
+        } else if (!validateEmail(email)) {
+            showError("email", "Please enter a valid email address.");
+            isValid = false;
+        }
 
-    if (!message) {
-        showError("message", "Please enter your message.");
-        isValid = false;
-    } else if (message.length < 10) {
-        showError("message", "Your message should be at least 10 characters.");
-        isValid = false;
-    }
+        if (!subject) {
+            showError("subject", "Please add a subject.");
+            isValid = false;
+        }
 
-    if (!isValid) {
-        formStatus.textContent = "Please fix the highlighted fields.";
-        formStatus.className = "text-sm text-red-500";
-        return;
-    }
+        if (!message) {
+            showError("message", "Please enter your message.");
+            isValid = false;
+        } else if (message.length < 10) {
+            showError("message", "Your message should be at least 10 characters.");
+            isValid = false;
+        }
 
-    formStatus.textContent = "Message ready. Connect this form to Formspree, EmailJS, or a backend endpoint.";
-    formStatus.className = "text-sm text-green-600 dark:text-green-400";
+        if (!isValid) {
+            formStatus.textContent = "Please fix the highlighted fields.";
+            formStatus.className = "text-sm text-red-500";
+            return;
+        }
 
-    contactForm.reset();
-});
+        try {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Sending...";
+
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json"
+                },
+                body: formData
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                throw new Error(result.error || "Form submission failed.");
+            }
+
+            formStatus.textContent = "Message sent successfully.";
+            formStatus.className = "text-sm text-green-600 dark:text-green-400";
+            contactForm.reset();
+        } catch (error) {
+            formStatus.textContent = error.message || "Something went wrong. Please try again.";
+            formStatus.className = "text-sm text-red-500";
+            console.error("Form error:", error);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+                <i class="fa-solid fa-paper-plane"></i>
+                Send Message
+            `;
+        }
+    });
+} else {
+    console.error("Contact form elements not found.");
+}

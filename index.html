@@ -42,14 +42,13 @@
 </head>
 
 <body class="font-raleway bg-white text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
-    <!-- ================= BACK TO TOP FLOATING BUTTON ================= -->
+    <!--  BACK TO TOP FLOATING BUTTON -->
     <button id="backToTop"
-        class="fixed bottom-6 right-6 z-50 hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-soft transition hover:-translate-y-1 hover:text-accent dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:shadow-darksoft"
+        class="fixed bottom-6 right-6  h-11 w-11 items-center justify-center rounded-full  transition hover:-translate-y-1 bg-slate-900 text-white"
         aria-label="Back to top">
-        <i class="fa-solid fa-arrow-up"></i>
+        <a href="#hero"><i class="fa-solid fa-arrow-up"></i></a>
     </button>
-
-    <!-- ================= HEADER ================= -->
+    <!--  HEADER  -->
     <header
         class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/85">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -351,7 +350,7 @@
                         </h2>
                     </div>
 
-                    
+
                 </div>
 
                 <div class="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
@@ -387,14 +386,12 @@
                             </div>
 
                             <div class="mt-6 flex gap-3">
-                                <a href="https://product-card-eight.vercel.app/" target="_blank"
-                                    rel=""
+                                <a href="https://product-card-eight.vercel.app/" target="_blank" rel=""
                                     class="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
                                     <i class="fa-solid fa-up-right-from-square"></i>
                                     Live Demo
                                 </a>
-                                <a href="https://github.com/Olaide-FT/Product_Card" target="_blank"
-                                    rel=""
+                                <a href="https://github.com/Olaide-FT/Product_Card" target="_blank" rel=""
                                     class="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-100">
                                     <i class="fa-brands fa-github"></i>
                                     GitHub
@@ -434,8 +431,7 @@
                             </div>
 
                             <div class="mt-6 flex gap-3">
-                                <a href="https://code-alpha-musicplayer-mu.vercel.app/" target="_blank"
-                                    rel=""
+                                <a href="https://code-alpha-musicplayer-mu.vercel.app/" target="_blank" rel=""
                                     class="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
                                     <i class="fa-solid fa-up-right-from-square"></i>
                                     Live Demo
@@ -485,8 +481,7 @@
                             </div>
 
                             <div class="mt-6 flex gap-3">
-                                <a href="https://dish-share-p42u.vercel.app/" target="_blank"
-                                    rel=""
+                                <a href="https://dish-share-p42u.vercel.app/" target="_blank" rel=""
                                     class="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
                                     <i class="fa-solid fa-up-right-from-square"></i>
                                     Live Demo
@@ -668,9 +663,7 @@
                         class="reveal rounded-[2rem] border border-slate-200 bg-white p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900 dark:shadow-darksoft sm:p-8">
                         <div class="mb-6">
                             <h3 class="text-2xl font-bold text-slate-950 dark:text-white">Send a message</h3>
-                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                                This form is set up to look functional and validate inputs on the frontend.
-                            </p>
+
                         </div>
 
                         <form id="contactForm" class="space-y-5" novalidate>
@@ -680,7 +673,7 @@
                                         class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
                                     <input id="name" name="name" type="text" placeholder="Your name"
                                         class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
-                                    <p class="mt-2 hidden text-xs text-red-500" data-error-for="name"></p>
+                                    <p id="nameError" class="mt-2 hidden text-xs text-red-500"></p>
                                 </div>
 
                                 <div>
@@ -688,7 +681,7 @@
                                         class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
                                     <input id="email" name="email" type="email" placeholder="your@email.com"
                                         class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
-                                    <p class="mt-2 hidden text-xs text-red-500" data-error-for="email"></p>
+                                    <p id="emailError" class="mt-2 hidden text-xs text-red-500"></p>
                                 </div>
                             </div>
 
@@ -698,7 +691,7 @@
                                 <input id="subject" name="subject" type="text"
                                     placeholder="What would you like to discuss?"
                                     class="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white" />
-                                <p class="mt-2 hidden text-xs text-red-500" data-error-for="subject"></p>
+                                <p id="subjectError" class="mt-2 hidden text-xs text-red-500"></p>
                             </div>
 
                             <div>
@@ -707,11 +700,11 @@
                                 <textarea id="message" name="message" rows="6"
                                     placeholder="Tell me a bit about your project or opportunity..."
                                     class="w-full resize-none rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-sm text-slate-900 outline-none transition focus:border-accent dark:border-slate-700 dark:bg-slate-950 dark:text-white"></textarea>
-                                <p class="mt-2 hidden text-xs text-red-500" data-error-for="message"></p>
+                                <p id="messageError" class="mt-2 hidden text-xs text-red-500"></p>
                             </div>
 
                             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                                <button type="submit"
+                                <button id="submitBtn" type="submit"
                                     class="inline-flex items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-4 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:opacity-90">
                                     <i class="fa-solid fa-paper-plane"></i>
                                     Send Message
@@ -730,7 +723,7 @@
     <footer class="border-t border-slate-200 py-8 dark:border-slate-800">
         <div
             class="mx-auto flex max-w-7xl flex-col gap-4 px-4 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8 dark:text-slate-400">
-            <p>© 2026 Fareedah Olaide. Built with Tailwind CSS and Vanilla JavaScript.</p>
+            <p>© 2026 Fareedah Olaide. Built with Tailwind CSS and JavaScript.</p>
             <div class="flex items-center gap-5">
                 <a href="#hero" class="transition hover:text-accent">Back to top</a>
                 <a href="https://github.com/Olaide-FT" target="_blank" rel="noopener noreferrer"
@@ -740,9 +733,9 @@
         </div>
     </footer>
 
-    
+
     <script src="./portfolio.js"></script>
-    
+
 </body>
 
 </html>
