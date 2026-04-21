@@ -1,5 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 const mobileLinks = document.querySelectorAll(".mobile-link");
@@ -47,70 +45,23 @@ if (themeToggle) {
 const sections = document.querySelectorAll("#main");
 const navLinks = document.querySelectorAll(".nav-link");
 
-function updateActiveNav() {
-    const currentId = "";
-
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
-
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            currentId = section.getAttribute("id");
-        }
-    });
-
+if (navLinks) {
     navLinks.forEach((link) => {
-        link.classList.remove("text-accent");
-
-        if (link.getAttribute("href") === `#${currentId}`) {
-            link.classList.add("text-accent");
-        }
+        link.addEventListener("click", () => {
+            sections.forEach((section) => {
+                section.classList.remove("active");
+            });
+            link.classList.add("active");
+        });
     });
 }
 
-window.addEventListener("scroll", updateActiveNav);
-updateActiveNav();
 
-
-const revealItems = document.querySelectorAll(".reveal");
-
-revealItems.forEach((item) => {
-    item.classList.add(
-        "opacity-0",
-        "translate-y-6",
-        "transition",
-        "duration-700",
-        "ease-out"
-    );
-});
-
-const revealObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.remove("opacity-0", "translate-y-6");
-                entry.target.classList.add("opacity-100", "translate-y-0");
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    },
-    {
-        threshold: 0.12,
-    }
-);
-
-revealItems.forEach((item) => revealObserver.observe(item));
-
-
-
-
-
-
-const contactForm = document.getElementById("contactForm");
+const form = document.getElementById("contactForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const messageInput = document.getElementById("message");
 const formStatus = document.getElementById("formStatus");
-const submitBtn = document.getElementById("submitBtn");
-
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjowgja";
 
 function showError(fieldName, message) {
     const errorEl = document.getElementById(`${fieldName}Error`);
@@ -130,88 +81,55 @@ function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-if (contactForm && formStatus && submitBtn) {
-    contactForm.addEventListener("submit", async (e) => {
+if (form) {
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const formData = new FormData(contactForm);
-        const name = (formData.get("name") || "").trim();
-        const email = (formData.get("email") || "").trim();
-        const subject = (formData.get("subject") || "").trim();
-        const message = (formData.get("message") || "").trim();
-
-        let isValid = true;
-
+        // clear previous errors
+        clearError("name");
+        clearError("email");
+        clearError("message");
         formStatus.textContent = "";
-        formStatus.className = "text-sm text-slate-500 dark:text-slate-400";
 
-        ["name", "email", "subject", "message"].forEach(clearError);
+        const number = "2349159885788";
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
 
+        // validate step-by-step (early return)
         if (!name) {
-            showError("name", "Please enter your name.");
-            isValid = false;
-        }
-
-        if (!email) {
-            showError("email", "Please enter your email.");
-            isValid = false;
-        } else if (!validateEmail(email)) {
-            showError("email", "Please enter a valid email address.");
-            isValid = false;
-        }
-
-        if (!subject) {
-            showError("subject", "Please add a subject.");
-            isValid = false;
-        }
-
-        if (!message) {
-            showError("message", "Please enter your message.");
-            isValid = false;
-        } else if (message.length < 10) {
-            showError("message", "Your message should be at least 10 characters.");
-            isValid = false;
-        }
-
-        if (!isValid) {
-            formStatus.textContent = "Please fix the highlighted fields.";
-            formStatus.className = "text-sm text-red-500";
+            showError("name", "Please enter your name");
             return;
         }
 
-        try {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = "Sending...";
-
-            const response = await fetch(FORMSPREE_ENDPOINT, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json"
-                },
-                body: formData
-            });
-
-            const result = await response.json().catch(() => ({}));
-
-            if (!response.ok) {
-                throw new Error(result.error || "Form submission failed.");
-            }
-
-            formStatus.textContent = "Message sent successfully.";
-            formStatus.className = "text-sm text-green-600 dark:text-green-400";
-            contactForm.reset();
-        } catch (error) {
-            formStatus.textContent = error.message || "Something went wrong. Please try again.";
-            formStatus.className = "text-sm text-red-500";
-            console.error("Form error:", error);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `
-                <i class="fa-solid fa-paper-plane"></i>
-                Send Message
-            `;
+        if (!email) {
+            showError("email", "Please enter your email");
+            return;
         }
+
+        if (!validateEmail(email)) {
+            showError("email", "Please enter a valid email");
+            return;
+        }
+
+        if (!message) {
+            showError("message", "Please enter your message");
+            return;
+        }
+
+        // build WhatsApp message
+        const whatsappMessage =
+            `Hello, my name is ${name}.%0A` +
+            `Email: ${email}%0A%0A` +
+            `Message: ${message}`;
+
+        const whatsappURL = `https://wa.me/${number}?text=${whatsappMessage}`;
+
+        window.open(whatsappURL, "_blank");
+
+        formStatus.textContent = "Redirecting to WhatsApp...";
     });
-} else {
-    console.error("Contact form elements not found.");
 }
+
+
+
