@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev.js",
     "server": "node --watch server/index.js",
     "start": "node server/index.js",
-    "test:server": "node --test server/reviewValidation.test.js server/bookingValidation.test.js",
+    "test:server": "node --test server/reviewValidation.test.js server/bookingValidation.test.js server/emailNotifications.test.js",
     "build": "vite build",
     "preview": "vite preview"
   },

@@ -56,6 +56,7 @@ function DiscoveryBooking() {
   const [submitError, setSubmitError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [confirmedBooking, setConfirmedBooking] = useState(null);
+  const [notificationSent, setNotificationSent] = useState(true);
 
   const selectedDay = useMemo(
     () => dates.find(({ date }) => date === selectedDate),
@@ -137,6 +138,7 @@ function DiscoveryBooking() {
       });
       const result = await readResponse(response);
       setConfirmedBooking(result.booking);
+      setNotificationSent(result.notification?.sent === true);
       setStep(3);
     } catch (error) {
       setSubmitError(error.message);
@@ -190,6 +192,11 @@ function DiscoveryBooking() {
             <p className="mt-2 text-xs text-slate-500">
               Please contact me directly if you need to change your booking.
             </p>
+            {!notificationSent && (
+              <p className="mt-3 text-xs text-amber-700 dark:text-amber-400">
+                Your booking is saved, but the site owner&apos;s email notification could not be sent. Please contact them directly to confirm.
+              </p>
+            )}
           </div>
         ) : (
           <>

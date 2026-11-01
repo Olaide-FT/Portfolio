@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const apiBaseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 
@@ -11,7 +12,7 @@ async function readApiResponse(response) {
       result = JSON.parse(body);
     } catch {
       if (response.ok) {
-        throw new Error("The reviews service returned an invalid response.");
+        throw new Error("Invalid response.");
       }
     }
   }
@@ -58,6 +59,200 @@ function ReviewCard({ review }) {
   );
 }
 
+export function ReviewModerationPanel({ onClose, onModerated, darkMode }) {
+  const [adminKey, setAdminKey] = useState("");
+  const [pendingReviews, setPendingReviews] = useState([]);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [activeReview, setActiveReview] = useState("");
+  const [error, setError] = useState("");
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  const loadPendingReviews = async (key) => {
+    const response = await fetch(`${apiBaseUrl}/api/admin/reviews?status=pending`, {
+      headers: { "x-admin-key": key },
+    });
+    const result = await readApiResponse(response);
+    setPendingReviews(result.reviews);
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const key = new FormData(event.currentTarget).get("admin-key");
+    setLoading(true);
+    setError("");
+
+    try {
+      await loadPendingReviews(key);
+      setAdminKey(key);
+      setAuthenticated(true);
+    } catch (requestError) {
+      setError(requestError.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleModeration = async (reviewId, status) => {
+    setActiveReview(reviewId);
+    setError("");
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/admin/reviews/${encodeURIComponent(reviewId)}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-key": adminKey,
+        },
+        body: JSON.stringify({ status }),
+      });
+      await readApiResponse(response);
+      setPendingReviews((currentReviews) => currentReviews.filter(({ _id }) => _id !== reviewId));
+      if (status === "approved") onModerated();
+    } catch (requestError) {
+      setError(requestError.message);
+    } finally {
+      setActiveReview("");
+    }
+  };
+
+  const handleLogout = () => {
+    setAdminKey("");
+    setPendingReviews([]);
+    setAuthenticated(false);
+    setError("");
+  };
+
+  return createPortal(
+    <div className={darkMode ? "dark" : ""}>
+      <div
+        className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm"
+        onMouseDown={(event) => {
+          if (event.target === event.currentTarget) onClose();
+        }}
+      >
+        <section
+          className="max-h-[min(85vh,48rem)] w-full max-w-2xl overflow-y-auto rounded-3xl border border-slate-200 bg-white p-5 text-slate-900 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 sm:p-7"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="review-admin-title"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="font-display text-xl font-bold" id="review-admin-title">Review moderation</h2>
+            <div className="flex items-center gap-4">
+              {authenticated && (
+                <button
+                  className="text-xs font-semibold text-slate-500 underline underline-offset-4 hover:text-accent"
+                  type="button"
+                  onClick={handleLogout}
+                >
+                  Sign out
+                </button>
+              )}
+              <button
+                className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 transition hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-300"
+                ref={closeButtonRef}
+                type="button"
+                aria-label="Close admin dialog"
+                onClick={onClose}
+              >
+                <i className="fa-solid fa-xmark" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+
+          {!authenticated ? (
+            <form className="mt-5" onSubmit={handleLogin}>
+              <label className="mb-2 block text-xs text-slate-600 dark:text-slate-300" htmlFor="review-admin-key">
+                Enter Admin Pass key to access review.
+              </label>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <input
+                  className="min-h-11 min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 text-xs outline-none focus:border-accent dark:border-slate-700 dark:bg-slate-950"
+                  id="review-admin-key"
+                  name="admin-key"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                />
+                <button
+                  className="min-h-11 rounded-full bg-accent px-5 text-xs font-semibold text-white transition hover:bg-[#e84c3c] disabled:opacity-60"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? "Checking…" : "Access reviews"}
+                </button>
+              </div>
+            </form>
+          ) : pendingReviews.length ? (
+            <div className="mt-5 space-y-3">
+              {pendingReviews.map((review) => (
+                <article className="rounded-xl border border-slate-200 p-4 dark:border-slate-700" key={review._id}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="text-sm font-bold">{review.name}</h3>
+                    <span className="text-xs tracking-wider text-accent" aria-label={`${review.rating} out of 5 stars`}>
+                      {"★".repeat(review.rating)}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    {review.role} · {review.country} · {review.service}
+                  </p>
+                  <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-slate-700 dark:text-slate-300">
+                    {review.text}
+                  </p>
+                  <div className="mt-4 flex gap-2">
+                    <button
+                      className="min-h-9 rounded-full bg-emerald-600 px-4 text-xs font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-60"
+                      type="button"
+                      disabled={Boolean(activeReview)}
+                      onClick={() => handleModeration(review._id, "approved")}
+                    >
+                      {activeReview === review._id ? "Saving…" : "Approve"}
+                    </button>
+                    <button
+                      className="min-h-9 rounded-full border border-slate-300 px-4 text-xs font-semibold text-slate-600 transition hover:border-red-500 hover:text-red-600 disabled:opacity-60 dark:border-slate-700 dark:text-slate-300"
+                      type="button"
+                      disabled={Boolean(activeReview)}
+                      onClick={() => handleModeration(review._id, "rejected")}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : authenticated ? (
+            <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">There are no pending reviews.</p>
+          ) : null}
+
+          {error && (
+            <p className="mt-4 text-sm text-red-600 dark:text-red-400" role="alert">
+              {error}
+            </p>
+          )}
+        </section>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 function Testimonials() {
   const [reviews, setReviews] = useState([]);
   const [total, setTotal] = useState(0);
@@ -87,6 +282,16 @@ function Testimonials() {
 
   useEffect(() => {
     loadReviews();
+  }, []);
+
+  useEffect(() => {
+    const handleReviewsUpdated = () => {
+      setShowAll(true);
+      loadReviews(100);
+    };
+
+    window.addEventListener("portfolio:reviews-updated", handleReviewsUpdated);
+    return () => window.removeEventListener("portfolio:reviews-updated", handleReviewsUpdated);
   }, []);
 
   const handleShowAll = async () => {
@@ -169,7 +374,7 @@ function Testimonials() {
               Loading client reviews…
             </p>
           ) : reviews.length > 0 ? (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" data-reveal="stagger">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {reviews.map((review) => <ReviewCard key={review._id} review={review} />)}
             </div>
           ) : (

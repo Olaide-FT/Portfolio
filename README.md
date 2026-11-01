@@ -5,10 +5,9 @@
 1. Copy `.env.example` to `.env`.
 2. Set `MONGODB_URI` to a MongoDB connection string and replace `REVIEW_ADMIN_KEY` with a random secret of at least 32 characters.
 3. Set `CLIENT_ORIGIN` to the frontend origin. Separate multiple origins with commas.
-4. In one terminal, run `npm run server`.
-5. In another terminal, run `npm run dev`.
+4. Run `npm run dev`. This starts both the API and Vite frontend; keep the terminal open while developing.
 
-The Vite development server proxies `/api` requests to `http://localhost:4000`.
+The Vite development server proxies `/api` requests to `http://localhost:4000`. If the API fails to start, `npm run dev` reports the error and stops the frontend instead of leaving proxy requests to fail.
 
 ## Review behavior
 
@@ -18,14 +17,24 @@ Public reviews are stored as `pending` and never appear on the portfolio until a
 
 The booking calendar offers the next eight calendar days, Monday through Friday, with one-hour calls starting at 9:00 AM, 10:30 AM, and 1:00 PM West Africa Time (`Africa/Lagos`). Past times are hidden, and confirmed bookings are removed from availability. `GET /api/bookings/availability` returns the current open slots.
 
-Bookings are confirmed immediately and stored in MongoDB. A unique database index prevents two visitors from reserving the same start time. `POST /api/bookings` validates the visitor details and selected slot. To view confirmed bookings, use `GET /api/admin/bookings` with the `x-admin-key` header. Cancel a booking with `PATCH /api/admin/bookings/:id` and `{"status":"cancelled"}`; its slot becomes available again. Confirmation is shown in the browser; email/calendar invitations are not configured.
+Bookings are confirmed immediately and stored in MongoDB. A unique database index prevents two visitors from reserving the same start time. `POST /api/bookings` validates the visitor details and selected slot. To view confirmed bookings, use `GET /api/admin/bookings` with the `x-admin-key` header. Cancel a booking with `PATCH /api/admin/bookings/:id` and `{"status":"cancelled"}`; its slot becomes available again.
+
+To email the site owner when a booking is made, configure these API environment variables in `.env` (or your hosting provider):
+
+- `RESEND_API_KEY`: API key from Resend.
+- `BOOKING_NOTIFICATION_EMAIL`: inbox that should receive booking notifications.
+- `RESEND_FROM_EMAIL`: sender address verified in Resend, such as `Portfolio <bookings@example.com>`.
+
+Resend requires a verified sending domain for production delivery. Restart the API after changing these values. If email delivery is unavailable, the booking remains saved; the API logs the notification failure and the booking form tells the visitor to contact the site owner.
 
 Use the secret `REVIEW_ADMIN_KEY` in the `x-admin-key` header to moderate reviews:
 
 - `GET /api/admin/reviews` lists pending reviews.
 - `PATCH /api/admin/reviews/:id` with `{"status":"approved"}` or `{"status":"rejected"}` updates a review.
 
-Do not expose the admin key in frontend code or commit `.env`. For example, with PowerShell:
+To moderate reviews in the portfolio, choose **Admin** in the navigation bar to open the moderation dialog, then enter the `REVIEW_ADMIN_KEY` configured in the API's `.env` file. Close the dialog or sign out to clear the key from page memory. Use HTTPS when moderating a deployed site.
+
+Do not expose the admin key in frontend code or commit `.env`. For command-line moderation with PowerShell:
 
 ```powershell
 $headers = @{ "x-admin-key" = "YOUR_REVIEW_ADMIN_KEY" }

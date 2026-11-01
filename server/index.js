@@ -9,11 +9,12 @@ import Review from "./models/Review.js";
 import { getBookingDates, bookingDurationMinutes, bookingTimeZone, findBookingSlot } from "./bookingSchedule.js";
 import { validateBookingPayload } from "./bookingValidation.js";
 import { validateReviewPayload } from "./reviewValidation.js";
+import { sendBookingNotification } from "./emailNotifications.js";
 
 const app = express();
-const port = Number(process.env.PORT) || 4000;
+const port = Number(process.env.PORT);
 const adminKey = process.env.REVIEW_ADMIN_KEY;
-const allowedOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:5173")
+const allowedOrigins = (process.env.CLIENT_ORIGIN)
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
@@ -23,7 +24,7 @@ app.use(
   cors({
     origin(origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-      return callback(new Error("This origin is not allowed to access the reviews API."));
+      return callback(new Error("Not Allowed "));
     },
   }),
 );
@@ -105,7 +106,7 @@ app.post("/api/reviews", submissionLimiter, async (request, response) => {
 
   await Review.create(result.review);
   return response.status(201).json({
-    message: "Thanks! Your review has been submitted for approval.",
+    message: "Thanks! Your review has been submitted.",
   });
 });
 
@@ -157,8 +158,29 @@ app.post("/api/bookings", bookingLimiter, async (request, response) => {
       status: "confirmed",
     });
 
+    let notification;
+    try {
+      notification = await sendBookingNotification({
+        id: booking.id,
+        name: booking.name,
+        email: booking.email,
+        topic: booking.topic,
+        notes: booking.notes,
+        startAt: booking.startAt,
+        durationMinutes: booking.durationMinutes,
+        timeZone: bookingTimeZone,
+      });
+      if (!notification.sent) {
+        console.warn("Booking notification not sent: Resend is not configured.", { bookingId: booking.id });
+      }
+    } catch (error) {
+      notification = { sent: false, reason: "delivery_failed" };
+      console.error("Booking notification failed:", { bookingId: booking.id, error: error.message });
+    }
+
     return response.status(201).json({
       message: "Your discovery call is confirmed.",
+      notification,
       booking: {
         id: booking.id,
         name: booking.name,

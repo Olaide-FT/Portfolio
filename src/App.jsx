@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Testimonials from "./components/Testimonials.jsx";
+import Testimonials, { ReviewModerationPanel } from "./components/Testimonials.jsx";
 import DiscoveryBooking from "./components/DiscoveryBooking.jsx";
 
 const ecommerceImage = new URL("../pictures/E-commerce.png", import.meta.url).href;
@@ -178,6 +178,7 @@ const portfolioStats = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [reviewAdminOpen, setReviewAdminOpen] = useState(false);
   const [lightTheme, setLightTheme] = useState(
     () => window.localStorage.getItem("portfolio-theme") !== "dark",
   );
@@ -281,6 +282,16 @@ function App() {
               <a className="rounded-lg px-3 py-3 transition hover:text-accent md:px-0" href="#about" onClick={closeMenu}>About</a>
               <a className="rounded-lg px-3 py-3 transition hover:text-accent md:px-0" href="#work" onClick={closeMenu}>Selected work</a>
               <a className="rounded-lg px-3 py-3 transition hover:text-accent md:px-0" href="#testimonials" onClick={closeMenu}>Testimonials</a>
+              <button
+                className="rounded-lg px-3 py-3 text-left font-semibold text-accent transition hover:text-[#e84c3c] md:px-0"
+                type="button"
+                onClick={() => {
+                  closeMenu();
+                  setReviewAdminOpen(true);
+                }}
+              >
+                Admin
+              </button>
               <a className="rounded-lg px-3 py-3 transition hover:text-accent md:px-0" href="#booking" onClick={closeMenu}>Book a call</a>
               <a className="rounded-lg px-3 py-3 transition hover:text-accent md:px-0" href="#contact" onClick={closeMenu}>Contact</a>
             </nav>
@@ -581,6 +592,13 @@ function App() {
             </div>
           </section>
         </main>
+        {reviewAdminOpen && (
+          <ReviewModerationPanel
+            darkMode={!lightTheme}
+            onClose={() => setReviewAdminOpen(false)}
+            onModerated={() => window.dispatchEvent(new Event("portfolio:reviews-updated"))}
+          />
+        )}
 
         <footer className="mx-auto grid w-full max-w67xl grid-cols-2 items-center gap-4  border-slate-200 px-5 py-6 dark:border-slate-800 sm:grid-cols-3 sm:px-8 lg:px-12">
           <a className="flex items-center gap-2 font-display text-xs font-bold" href="#hero">
