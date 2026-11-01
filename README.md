@@ -46,7 +46,7 @@ Invoke-RestMethod -Method Patch -Uri "http://localhost:4000/api/admin/reviews/RE
 
 Deploy the Vite frontend and Express API as separate services. On the API host, configure `MONGODB_URI`, `REVIEW_ADMIN_KEY` (at least 32 characters), and `CLIENT_ORIGIN` (the exact frontend origin, including `https://` but no path). The current Vercel production origin is also allowed by default; set `CLIENT_ORIGIN` for any additional custom or preview domains. The API listens on the host-provided `PORT` and exposes `/api/health` for health checks.
 
-The current Render API origin is used automatically in production. For another API host, set `VITE_API_URL` to its public origin before building and redeploying the frontend. Vite embeds this value into the production bundle at build time; setting it only at runtime or only on the API host will not update the frontend. If the frontend and API share an origin behind a production `/api` reverse proxy, leave `VITE_API_URL` unset. The Vite proxy to `localhost:4000` is development-only.
+The repository's `vercel.json` forwards production `/api/*` requests to the Render API, keeping browser requests same-origin and avoiding cross-origin browser restrictions. Leave `VITE_API_URL` unset on Vercel so these rewrites are used. If deploying the frontend elsewhere, configure an equivalent `/api/*` reverse proxy or set `VITE_API_URL` to the public API origin and allow that frontend origin in the API's CORS configuration. The Vite proxy to `localhost:4000` is development-only.
 
 Use `.env.example` as the local environment-variable checklist. Do not copy its blank database or admin-key values to production; set production secrets in the hosting provider's environment configuration.
 
