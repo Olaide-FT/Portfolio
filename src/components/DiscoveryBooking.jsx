@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-
-const apiBaseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+import { apiBaseUrl } from "../api.js";
 const whatsappNumber = "2349159885788";
 
 async function readResponse(response) {

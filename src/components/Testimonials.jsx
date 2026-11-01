@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-
-const apiBaseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+import { apiBaseUrl } from "../api.js";
 
 async function readApiResponse(response) {
   const body = await response.text();

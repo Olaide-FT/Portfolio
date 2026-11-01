@@ -12,19 +12,24 @@ import { validateReviewPayload } from "./reviewValidation.js";
 import { sendBookingNotification } from "./emailNotifications.js";
 
 const app = express();
-const port = Number(process.env.PORT);
+const port = Number(process.env.PORT || 4000);
 const adminKey = process.env.REVIEW_ADMIN_KEY;
-const allowedOrigins = (process.env.CLIENT_ORIGIN)
+const productionClientOrigin = "https://portfolio-taupe-chi-46.vercel.app";
+const allowedOrigins = [
+  ...(process.env.CLIENT_ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())
-  .filter(Boolean);
+  .filter(Boolean)
+  .map((origin) => origin.replace(/\/+$/, "")),
+  productionClientOrigin,
+];
 
 app.disable("x-powered-by");
 app.use(
   cors({
     origin(origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-      return callback(new Error("Not Allowed "));
+      return callback(new Error("Origin is not allowed."));
     },
   }),
 );
@@ -288,7 +293,7 @@ app.use((error, _request, response, _next) => {
   if (error.type === "entity.too.large") {
     return response.status(413).json({ error: "Request body is too large." });
   }
-  if (error.message.includes("origin is not allowed")) {
+  if (error.message === "Origin is not allowed.") {
     return response.status(403).json({ error: error.message });
   }
 
