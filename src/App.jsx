@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Testimonials, { ReviewModerationPanel } from "./components/Testimonials.jsx";
 import DiscoveryBooking from "./components/DiscoveryBooking.jsx";
 
@@ -97,6 +98,90 @@ function ArrowIcon() {
   return <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />;
 }
 
+function CvPreviewModal({ onClose, darkMode }) {
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      if (previousFocus instanceof HTMLElement) previousFocus.focus();
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div className={darkMode ? "dark" : ""}>
+      <div
+        className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/70 p-3 backdrop-blur-sm sm:p-6"
+        onMouseDown={(event) => {
+          if (event.target === event.currentTarget) onClose();
+        }}
+      >
+        <section
+          className="flex max-h-[94vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white text-slate-900 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cv-preview-title"
+        >
+          <header className="flex items-center justify-between gap-4 border-b border-slate-200 px-5 py-4 dark:border-slate-700 sm:px-7">
+            <div>
+              <h2 className="font-display text-xl font-bold" id="cv-preview-title">Curriculum Vitae</h2>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Review the CV before downloading.
+              </p>
+            </div>
+            <button
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-slate-200 text-slate-600 transition hover:border-accent hover:text-accent dark:border-slate-700 dark:text-slate-300"
+              ref={closeButtonRef}
+              type="button"
+              aria-label="Close CV preview"
+              onClick={onClose}
+            >
+              <i className="fa-solid fa-xmark" aria-hidden="true" />
+            </button>
+          </header>
+
+          <iframe
+            className="min-h-[55vh] w-full flex-1 bg-slate-100 dark:bg-slate-800"
+            src="/Fareedah-Olaide-CV.pdf#toolbar=0&navpanes=0"
+            title="Preview of Fareedah Olaide's CV"
+          />
+
+          <footer className="flex flex-col-reverse justify-between gap-3 border-t border-slate-200 px-5 py-4 dark:border-slate-700 sm:flex-row sm:items-center sm:px-7">
+            <a
+              className="text-center text-xs font-semibold text-slate-500 underline underline-offset-4 transition hover:text-accent dark:text-slate-400"
+              href="/Fareedah-Olaide-CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open CV in a new tab
+            </a>
+            <a
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 text-xs font-semibold text-white transition hover:bg-[#e84c3c]"
+              href="/Fareedah-Olaide-CV.pdf"
+              download="Fareedah-Olaide-CV.pdf"
+            >
+              <i className="fa-solid fa-download" aria-hidden="true" />
+              Download CV
+            </a>
+          </footer>
+        </section>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 function OrbitIcon({ tool, counterAnimation }) {
   return (
     <span
@@ -179,6 +264,8 @@ const portfolioStats = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [reviewAdminOpen, setReviewAdminOpen] = useState(false);
+  const [cvPreviewOpen, setCvPreviewOpen] = useState(false);
+  const closeCvPreview = useCallback(() => setCvPreviewOpen(false), []);
   const [lightTheme, setLightTheme] = useState(
     () => window.localStorage.getItem("portfolio-theme") !== "dark",
   );
@@ -305,15 +392,15 @@ function App() {
               >
                 <i className={`fa-solid ${lightTheme ? "fa-moon" : "fa-sun"}`} aria-hidden="true" />
               </button>
-              <a
+              <button
                 className="grid h-10 w-10 place-items-center rounded-full bg-accent text-sm text-white transition hover:-translate-y-0.5 hover:bg-[#e84c3c]"
-                href="/Fareedah-Olaide-CV.pdf"
-                download="Fareedah-Olaide-CV.pdf"
-                aria-label="Download Fareedah Olaide's CV"
+                type="button"
+                onClick={() => setCvPreviewOpen(true)}
+                aria-label="Preview Fareedah Olaide's CV"
                 title="Download CV"
               >
                 <i className="fa-solid fa-download" aria-hidden="true" />
-              </a>
+              </button>
               <button
                 className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 text-slate-600 dark:border-slate-700 dark:text-slate-300 md:hidden"
                 type="button"
@@ -597,6 +684,12 @@ function App() {
             darkMode={!lightTheme}
             onClose={() => setReviewAdminOpen(false)}
             onModerated={() => window.dispatchEvent(new Event("portfolio:reviews-updated"))}
+          />
+        )}
+        {cvPreviewOpen && (
+          <CvPreviewModal
+            darkMode={!lightTheme}
+            onClose={closeCvPreview}
           />
         )}
 
