@@ -4,7 +4,8 @@ import Testimonials, { ReviewModerationPanel } from "./components/Testimonials.j
 import DiscoveryBooking from "./components/DiscoveryBooking.jsx";
 
 const ecommerceImage = new URL("../pictures/E-commerce.png", import.meta.url).href;
-const musicPlayerImage = new URL("../pictures/Music Player.png", import.meta.url).href;
+const nestoraImage = new URL("../pictures/Nestora.jpg", import.meta.url).href;
+const ticketHubImage = new URL("../pictures/TicketHub.jpg", import.meta.url).href;
 const recipeSharingImage = new URL("../pictures/Recipe Sharing.png", import.meta.url).href;
 
 const projects = [
@@ -20,17 +21,6 @@ const projects = [
     source: "https://github.com/Olaide-FT/Product_Card",
   },
   {
-    name: "Music Player",
-    category: "Interactive",
-    kind: "Web experience",
-    image: musicPlayerImage,
-    description:
-      "A responsive music player with intuitive controls, a clean interface, and seamless playback functionality.",
-    tools: ["HTML", "Tailwind CSS", "JavaScript"],
-    demo: "https://code-alpha-musicplayer-mu.vercel.app/",
-    source: "https://github.com/Olaide-FT/CodeAlpha_Musicplayer",
-  },
-  {
     name: "Recipe Sharing",
     category: "Personal brand",
     kind: "Community website",
@@ -41,16 +31,38 @@ const projects = [
     demo: "https://dish-share-p42u.vercel.app/",
     source: "https://github.com/Olaide-FT/Dish_Share",
   },
+  {
+    name: "Nestora",
+    category: "Web app",
+    kind: "Real estate platform",
+    image: nestoraImage,
+    description:
+      "A property listing website with a location search, featured homes, and a polished, responsive layout.",
+    tools: ["React"],
+    demo: "https://nestora-beige.vercel.app/",
+    source: null,
+  },
+  {
+    name: "TicketHub",
+    category: "Web app",
+    kind: "Event ticketing",
+    image: ticketHubImage,
+    description:
+      "An event discovery and ticketing app with search, category filters, featured events, and a My Tickets cart.",
+    tools: ["React"],
+    demo: "https://tickethub-liart.vercel.app/",
+    source: null,
+  },
 ];
 
-const filters = ["All work", "Landing page", "Interactive", "Personal brand"];
+const filters = ["All work", "Landing page", "Web app", "Personal brand"];
 
 const codingTools = [
   { name: "HTML5", icon: "fa-brands fa-html5" },
   { name: "CSS3", icon: "fa-brands fa-css3-alt" },
   { name: "JavaScript", icon: "fa-brands fa-js" },
   { name: "React", icon: "fa-brands fa-react" },
-  { name: "Tailwind CSS", icon: "fa-solid fa-wind" },
+  { name: "Tailwind CSS", icon: "tailwind" },
   { name: "Node.js", icon: "fa-brands fa-node-js" },
   { name: "MongoDB", icon: "fa-solid fa-database" },
   { name: "Express.js", icon: "fa-solid fa-server" },
@@ -63,13 +75,12 @@ const orbitTools = [
   { name: "CSS3", icon: "fa-brands fa-css3-alt", position: "right-[14%] top-[14%] translate-x-1/2 -translate-y-1/2" },
   { name: "JavaScript", icon: "fa-brands fa-js", position: "right-0 top-1/2 translate-x-1/2 -translate-y-1/2" },
   { name: "React", icon: "fa-brands fa-react", position: "right-[14%] bottom-[14%] translate-x-1/2 translate-y-1/2" },
-  { name: "Tailwind CSS", icon: "fa-solid fa-wind", position: "left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2" },
-  { name: "GitHub", icon: "fa-brands fa-github", position: "left-[14%] bottom-[14%] -translate-x-1/2 translate-y-1/2" },
+  { name: "Tailwind CSS", icon: "tailwind", position: "left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2" },
+  { name: "Git", icon: "fa-brands fa-git-alt", position: "left-[14%] bottom-[14%] -translate-x-1/2 translate-y-1/2" },
   { name: "Node.js", icon: "fa-brands fa-node-js", position: "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2" },
   { name: "MongoDB", icon: "fa-solid fa-database", position: "left-[14%] top-[14%] -translate-x-1/2 -translate-y-1/2" },
   { name: "Express.js", icon: "fa-solid fa-server", position: "left-1/2 top-0 -translate-x-1/2 -translate-y-1/2" },
   { name: "Figma", icon: "fa-brands fa-figma", position: "right-0 top-1/2 translate-x-1/2 -translate-y-1/2" },
-  { name: "npm", icon: "fa-brands fa-npm", position: "left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2" },
   { name: "API development", icon: "fa-solid fa-code", position: "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2" },
 ];
 
@@ -93,6 +104,17 @@ const timeline = [
       "Started with HTML and CSS, then discovered how thoughtful design and interactive code can make websites more useful.",
   },
 ];
+
+function ToolIcon({ icon, className = "" }) {
+  if (icon === "tailwind") {
+    return (
+      <svg className={`inline-block h-[1.1em] w-[1.1em] fill-current ${className}`} viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+      </svg>
+    );
+  }
+  return <i className={`${icon} ${className}`} aria-hidden="true" />;
+}
 
 function ArrowIcon() {
   return <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />;
@@ -192,7 +214,7 @@ function OrbitIcon({ tool, counterAnimation }) {
         role="img"
         aria-label={tool.name}
       >
-        <i className={tool.icon} aria-hidden="true" />
+        <ToolIcon icon={tool.icon} />
       </span>
     </span>
   );
@@ -255,7 +277,7 @@ function StatCounter({ target, decimals = 0, suffix, title, detail }) {
 }
 
 const portfolioStats = [
-  { target: 1, decimals: 1, suffix: "+ Years", title: "Production Experience", detail: "Python & React Architectures" },
+  { target: 1.5, decimals: 1, suffix: "+ Years", title: "Production Experience", detail: "React Architectures" },
   { target: 10, suffix: "+", title: "Live Apps", detail: "From SaaS to E-Commerce" },
   { target: 100, suffix: "%", title: "On-Time Completion", detail: "Zero Missed Deadlines" },
   { target: 300, suffix: "+", title: "Engineering Commits", detail: "Clean Modular Repositories" },
@@ -498,7 +520,11 @@ function App() {
             </div>
             <div className="grid gap-5 md:grid-cols-2" data-reveal="stagger">
               <article className="flex min-h-[300px] flex-col items-start rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-9">
-                <span className="grid h-10 w-10 place-items-center text-2xl text-accent" aria-hidden="true">✦</span>
+                <span className="grid h-12 w-12 place-items-center text-accent" aria-hidden="true">
+                  <svg className="h-11 w-11 fill-current" viewBox="0 0 32 32">
+                    <path fillRule="evenodd" d="M16 3C11 3 7.5 6.8 7.5 12c0 3 .8 5 1.8 6.5C7 20 5 22 4 26v2h24v-2c-1-4-3-6-5.3-7.5 1-1.5 1.8-3.5 1.8-6.5C24.5 6.8 21 3 16 3zm0 3.9a4.6 5.6 0 1 0 0 11.2 4.6 5.6 0 0 0 0-11.2z" />
+                  </svg>
+                </span>
                 <h3 className="mb-3 mt-4 font-display text-xl font-bold tracking-tight">MERN foundations</h3>
                 <p className="mb-6 text-sm leading-7 text-slate-600 dark:text-slate-400">
                   I&apos;m <strong className="text-slate-900 dark:text-white">Fareedah Olaide</strong>, a MERN developer who enjoys
@@ -537,7 +563,7 @@ function App() {
                   >
                     {codingTools.map((tool) => (
                       <li className="flex items-center gap-2 whitespace-nowrap text-xs font-medium text-slate-600 dark:text-slate-300" key={tool.name}>
-                        <i className={`${tool.icon} text-base text-accent`} aria-hidden="true" />
+                        <ToolIcon icon={tool.icon} className="text-base text-accent" />
                         {tool.name}
                       </li>
                     ))}
@@ -582,7 +608,11 @@ function App() {
                     rel="noopener noreferrer"
                     aria-label={`Open ${project.name} live demo`}
                   >
-                    <img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={project.image} alt={`${project.name} project preview`} />
+                    {project.image ? (
+                      <img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={project.image} alt={`${project.name} project preview`} />
+                    ) : (
+                      <span className="grid h-full w-full place-items-center bg-gradient-to-br from-accent/20 via-slate-100 to-slate-200 font-display text-3xl font-bold tracking-tight text-slate-700 dark:from-accent/25 dark:via-slate-800 dark:to-slate-900 dark:text-slate-200">{project.name}</span>
+                    )}
                     <span className="absolute left-3 top-3 grid h-8 min-w-9 place-items-center rounded-full border border-white/30 bg-slate-950/60 px-2 text-[10px] text-white">0{index + 1}</span>
                     <span className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full border border-white/30 bg-slate-950/60 text-xs text-white"><ArrowIcon /></span>
                   </a>
@@ -601,7 +631,7 @@ function App() {
                       </div>
                       <div className="flex gap-2">
                         <a className="grid h-8 w-8 place-items-center rounded-full border border-slate-200 text-xs text-slate-500 hover:border-accent hover:text-accent dark:border-slate-700" href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} live demo`}><ArrowIcon /></a>
-                        <a className="grid h-8 w-8 place-items-center rounded-full border border-slate-200 text-xs text-slate-500 hover:border-accent hover:text-accent dark:border-slate-700" href={project.source} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} source code`}><i className="fa-brands fa-github" aria-hidden="true" /></a>
+                        {project.source && <a className="grid h-8 w-8 place-items-center rounded-full border border-slate-200 text-xs text-slate-500 hover:border-accent hover:text-accent dark:border-slate-700" href={project.source} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} source code`}><i className="fa-brands fa-github" aria-hidden="true" /></a>}
                       </div>
                     </div>
                   </div>
